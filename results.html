@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Live Results | ALU-ELECT</title>
+<meta name="description" content="Live provisional results for Alupe University student elections.">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/results.css">
+<style>
+/*
+ * Page-level layout only. Everything visual leans on the existing design
+ * system in main.css / results.css so this page belongs to the same product.
+ *
+ * Deliberately no backdrop-filter, no neon, no animated backgrounds: a
+ * results page has to read as an official record, not a dashboard demo.
+ */
+:root{
+  --alu-navy:#0d2149; --alu-blue:#1d4ed8; --alu-blue-soft:#eef2ff;
+  --alu-green:#0f7a3d; --alu-green-soft:#e9f7ef; --alu-gold:#a9822a;
+  --alu-gold-soft:#fdf6e6; --alu-red:#a8261f;
+  --alu-ink:#152238; --alu-muted:#5b6b85; --alu-line:#e3e8f0;
+  --alu-surface:#ffffff; --alu-bg:#f7f9fc;
+}
+.rz-wrap{max-width:1180px;margin:0 auto;padding:28px 20px 72px}
+.rz-head{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;
+  justify-content:space-between;margin-bottom:22px}
+.rz-title{margin:0;font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--alu-navy);
+  letter-spacing:-.02em;line-height:1.15}
+.rz-sub{margin:6px 0 0;color:var(--alu-muted);font-size:.95rem;max-width:60ch}
+.rz-pills{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rz-pill{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;
+  border-radius:999px;font-size:.8rem;font-weight:600;border:1px solid var(--alu-line);
+  background:var(--alu-surface);color:var(--alu-ink)}
+/*
+ * results.js signals connection state by swapping the CLASS on
+ * [data-results-connection] and rewriting its textContent. So the state is
+ * styled by class, and the status dot is a ::before pseudo-element - a real
+ * child node would be destroyed the first time the label changed.
+ */
+.rz-conn::before{content:"";width:8px;height:8px;border-radius:50%;
+  background:var(--alu-muted);display:inline-block;flex:0 0 auto}
+.rz-conn.connected{background:var(--alu-green-soft);
+  border-color:#bfe3cd;color:var(--alu-green)}
+.rz-conn.connected::before{background:var(--alu-green)}
+.rz-conn.connecting{background:var(--alu-gold-soft);
+  border-color:#ecdcb4;color:var(--alu-gold)}
+.rz-conn.connecting::before{background:var(--alu-gold)}
+.rz-conn.disconnected,.rz-conn.stale{
+  background:#fdeeee;border-color:#f0cdcb;color:var(--alu-red)}
+.rz-conn.disconnected::before,.rz-conn.stale::before{background:var(--alu-red)}
+
+.rz-banner{border:1px solid #ecdcb4;background:var(--alu-gold-soft);
+  color:#6d5316;border-radius:14px;padding:13px 17px;margin-bottom:22px;
+  font-size:.9rem;line-height:1.5}
+.rz-banner strong{color:#4d3a0f}
+
+.rz-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  margin-bottom:26px}
+.rz-stat{background:var(--alu-surface);border:1px solid var(--alu-line);
+  border-radius:16px;padding:18px 18px 16px;box-shadow:0 1px 2px rgba(13,33,73,.05)}
+.rz-stat .k{display:block;font-size:.74rem;text-transform:uppercase;
+  letter-spacing:.09em;color:var(--alu-muted);font-weight:700;margin-bottom:8px}
+.rz-stat .v{font-size:clamp(1.5rem,3vw,2rem);font-weight:750;color:var(--alu-navy);
+  line-height:1;font-variant-numeric:tabular-nums}
+
+.rz-card{background:var(--alu-surface);border:1px solid var(--alu-line);
+  border-radius:18px;padding:22px;margin-bottom:22px;
+  box-shadow:0 1px 2px rgba(13,33,73,.05)}
+.rz-card h2{margin:0 0 4px;font-size:1.12rem;color:var(--alu-navy);letter-spacing:-.01em}
+.rz-card .hint{margin:0 0 18px;color:var(--alu-muted);font-size:.87rem}
+
+.rz-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.rz-toolbar label{font-size:.82rem;color:var(--alu-muted);font-weight:600}
+.rz-toolbar select{padding:9px 12px;border:1px solid var(--alu-line);border-radius:10px;
+  background:var(--alu-surface);color:var(--alu-ink);font:inherit;font-size:.9rem;
+  min-height:42px;min-width:190px}
+.rz-btn{padding:9px 16px;border-radius:10px;border:1px solid var(--alu-blue);
+  background:var(--alu-blue);color:#fff;font:inherit;font-size:.88rem;font-weight:600;
+  cursor:pointer;min-height:42px}
+.rz-btn:hover{background:#1a44be}
+.rz-btn.ghost{background:var(--alu-surface);color:var(--alu-blue)}
+.rz-btn.ghost:hover{background:var(--alu-blue-soft)}
+.rz-check{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;
+  color:var(--alu-ink);cursor:pointer}
+.rz-check input{width:17px;height:17px;accent-color:var(--alu-blue)}
+
+.rz-empty{padding:34px 18px;text-align:center;color:var(--alu-muted);
+  border:1px dashed var(--alu-line);border-radius:14px;font-size:.92rem}
+.rz-foot{color:var(--alu-muted);font-size:.82rem;text-align:center;
+  padding-top:10px;line-height:1.6}
+.rz-skip{position:absolute;left:-9999px}
+.rz-skip:focus{left:12px;top:12px;background:#fff;padding:10px 14px;
+  border-radius:8px;z-index:50;border:2px solid var(--alu-blue)}
+@media (max-width:520px){
+  .rz-wrap{padding:18px 14px 56px}
+  .rz-toolbar select,.rz-toolbar .rz-btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<a class="rz-skip" href="#main-content">Skip to results</a>
+
+<header class="site-header" id="siteHeader">
+
+        <div class="container nav-container">
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="ALU-ELECT Home"
+            >
+
+                <div
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
+                    AE
+                </div>
+
+                <div class="brand-text">
+
+                    <span class="brand-name">
+                        ALU-ELECT
+                    </span>
+
+                    <span class="brand-tagline">
+                        Your Vote. Your Voice. Verifiable.
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <button
+                class="mobile-menu-toggle"
+                id="mobileMenuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <nav
+                class="main-navigation"
+                id="mainNavigation"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-link"
+                >
+                    Election
+                </a>
+
+                <a
+                    href="candidates.html"
+                    class="nav-link"
+                >
+                    Candidates
+                </a>
+
+                <a
+                    href="results.html"
+                    class="nav-link active"
+                    aria-current="page"
+                >
+                    Live Results
+                </a>
+
+                <a
+                    href="verify.html"
+                    class="nav-link"
+                >
+                    Verify Vote
+                </a>
+
+                <a
+                    href="how-it-works.html"
+                    class="nav-link"
+                >
+                    How It Works
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-button"
+                >
+                    Enter Election
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+<main id="main-content" class="rz-wrap">
+
+  <div class="rz-head">
+    <div>
+      <h1 class="rz-title">Live election results</h1>
+      <p class="rz-sub">
+        Every position, every contestant, counted from the ballots recorded
+        by the election server. Candidates on zero votes remain listed.
+      </p>
+    </div>
+    <div class="rz-pills">
+      <span class="rz-pill rz-conn connecting" data-results-connection
+            role="status" aria-live="polite">Connecting...</span>
+      <span class="rz-pill">
+        Updated <span data-results-updated>—</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Provisional notice. Removed by results.js only once the election is
+       actually CERTIFIED by the returning officer. -->
+  <div class="rz-banner" data-certification-status role="status">
+    <strong>Provisional results.</strong>
+    <span data-certification-message>
+      Counting is in progress. Figures may change until the election is
+      closed, reconciled and certified.
+    </span>
+  </div>
+
+  <section class="rz-grid" aria-label="Election totals">
+    <div class="rz-stat"><span class="k">Votes cast</span>
+      <span class="v" data-total-votes>—</span></div>
+    <div class="rz-stat"><span class="k">Voters who voted</span>
+      <span class="v" data-total-voters>—</span></div>
+    <div class="rz-stat"><span class="k">Eligible voters</span>
+      <span class="v" data-total-eligible>—</span></div>
+    <div class="rz-stat"><span class="k">Turnout</span>
+      <span class="v" data-turnout-percentage>—</span></div>
+    <div class="rz-stat"><span class="k">Positions</span>
+      <span class="v" data-position-count>—</span></div>
+    <div class="rz-stat"><span class="k">Candidates</span>
+      <span class="v" data-candidate-count>—</span></div>
+  </section>
+
+  <section class="rz-card" aria-labelledby="leadersHeading">
+    <h2 id="leadersHeading">Current leaders</h2>
+    <p class="hint">
+      Leading candidate per position while counting continues. A position
+      that is level is shown as tied rather than resolved arbitrarily.
+    </p>
+    <div id="leadersGrid">
+      <div class="rz-empty">Loading results…</div>
+    </div>
+  </section>
+
+  <section class="rz-card" aria-labelledby="raceHeading">
+    <h2 id="raceHeading">Race tracker</h2>
+    <p class="hint">Every position with all of its contestants.</p>
+
+    <div class="rz-toolbar">
+      <label for="raceFilter">Filter by position</label>
+      <select id="raceFilter" aria-label="Filter results by position">
+        <option value="all">All positions</option>
+      </select>
+      <button type="button" class="rz-btn ghost" data-results-refresh>
+        Refresh now
+      </button>
+      <label class="rz-check">
+        <input type="checkbox" data-results-auto-refresh checked>
+        <span>Update automatically</span>
+      </label>
+    </div>
+
+    <div id="raceList">
+      <div class="rz-empty">Loading results…</div>
+    </div>
+  </section>
+
+  <section class="rz-card" aria-labelledby="trendHeading">
+    <h2 id="trendHeading">Voting activity</h2>
+    <p class="hint">
+      Ballots recorded over time. Shown only where the server has real
+      timestamped data — nothing here is simulated.
+    </p>
+    <div id="voteTrendChart">
+      <div class="rz-empty">No activity data available yet.</div>
+    </div>
+  </section>
+
+  <section class="rz-card" aria-labelledby="schoolHeading">
+    <h2 id="schoolHeading">Turnout by school</h2>
+    <p class="hint">
+      Participation only. No individual voter is identified, and nothing here
+      reveals how anyone voted.
+    </p>
+    <div id="schoolTurnoutGrid">
+      <div class="rz-empty">No school breakdown available yet.</div>
+    </div>
+  </section>
+
+  <section class="rz-card" aria-labelledby="integrityHeading">
+    <h2 id="integrityHeading">Election integrity</h2>
+    <p class="hint" data-verification-description>
+      Checking the audit ledger…
+    </p>
+    <p data-verification-status class="rz-empty" role="status">—</p>
+    <p style="margin:14px 0 0">
+      <a class="rz-btn ghost" href="verify.html">Verify your own ballot</a>
+      <button type="button" class="rz-btn ghost" data-results-retry>
+        Reconnect
+      </button>
+    </p>
+  </section>
+
+  <p class="rz-foot">
+    Results are produced by the election server from recorded ballots.
+    Ballots are secret: nothing on this page links any voter to any choice.
+  </p>
+</main>
+
+<footer class="site-footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand footer-logo"
+                >
+
+                    <div
+                        class="brand-mark"
+                        aria-hidden="true"
+                    >
+                        AE
+                    </div>
+
+                    <div class="brand-text">
+
+                        <span class="brand-name">
+                            ALU-ELECT
+                        </span>
+
+                        <span class="brand-tagline">
+                            Your Vote. Your Voice. Verifiable.
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <p>
+                    Secure, transparent and verifiable student
+                    election technology.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Election
+                </h3>
+
+                <a href="election.html">
+                    Vote
+                </a>
+
+                <a href="candidates.html">
+                    Candidates
+                </a>
+
+                <a href="results.html">
+                    Live Results
+                </a>
+
+                <a href="verify.html">
+                    Verify Vote
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Information
+                </h3>
+
+                <a href="how-it-works.html">
+                    How It Works
+                </a>
+
+                <a href="results.html">
+                    Election Statistics
+                </a>
+
+                <a href="verify.html">
+                    Election Verification
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Security
+                </h3>
+
+                <span>
+                    Protected Voting
+                </span>
+
+                <span>
+                    Tamper-Evident Records
+                </span>
+
+                <span>
+                    Audit-Ready Election
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="currentYear">2026</span>
+                ALU-ELECT. All rights reserved.
+            </p>
+
+            <p>
+                Your Vote. Your Voice. Verifiable.
+            </p>
+
+        </div>
+
+    </footer>
+
+<script src="js/app.js"></script>
+<script src="js/results.js"></script>
+</body>
+</html>

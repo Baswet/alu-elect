@@ -1,0 +1,3188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="ALU-ELECT secure election administration dashboard."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1f3a"
+    >
+
+    <title>Admin Dashboard | ALU-ELECT</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body class="admin-page">
+
+    <!-- =========================================================
+         ACCESSIBILITY
+    ========================================================== -->
+
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Skip to admin dashboard
+    </a>
+
+
+    <!-- =========================================================
+         ADMIN HEADER
+    ========================================================== -->
+
+    <!-- =========================================================
+         SIGN IN
+
+         The administration console is not a page with a few protected
+         buttons on it: until the server confirms a session, none of it is
+         shown. Every admin API call is authorised again server-side, so
+         this screen is the courtesy, not the control.
+    ========================================================== -->
+
+    <div class="admin-login-screen" id="adminLoginScreen">
+
+        <div class="admin-login-card">
+
+            <div class="brand-mark" aria-hidden="true">AE</div>
+
+            <h1>Election Administration</h1>
+
+            <p class="admin-login-intro">
+                Sign in with your administrator account. Actions are
+                recorded in the audit ledger against your name.
+            </p>
+
+            <form id="adminLoginForm" class="admin-form" novalidate>
+
+                <div class="form-group">
+                    <label for="adminLoginEmail">Administrator email</label>
+                    <input
+                        type="email"
+                        id="adminLoginEmail"
+                        name="email"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="adminLoginPassword">Password</label>
+                    <input
+                        type="password"
+                        id="adminLoginPassword"
+                        name="password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <p
+                    class="admin-login-error"
+                    id="adminLoginError"
+                    role="alert"
+                    hidden
+                ></p>
+
+                <button
+                    type="submit"
+                    class="button button-primary button-full"
+                    id="adminLoginSubmit"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+            <p class="admin-login-foot">
+                <a href="index.html">Back to ALU-ELECT</a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Everything below is revealed only after the server confirms a
+         session. It is hidden, not merely styled out of the way. -->
+
+    <div class="admin-shell" id="adminShell" hidden>
+
+    <header class="admin-header" id="adminHeader">
+
+        <div class="container admin-header-container">
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="ALU-ELECT Home"
+            >
+
+                <div
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
+                    AE
+                </div>
+
+                <div class="brand-text">
+
+                    <span class="brand-name">
+                        ALU-ELECT
+                    </span>
+
+                    <span class="brand-tagline">
+                        Election Administration
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <div class="admin-header-status">
+
+                <span class="secure-status">
+
+                    <span
+                        class="status-dot"
+                        aria-hidden="true"
+                    ></span>
+
+                    Secure Session
+
+                </span>
+
+
+                <span class="admin-user">
+
+                    <span
+                        class="admin-avatar"
+                        aria-hidden="true"
+                    >
+                        AO
+                    </span>
+
+                    <span class="admin-user-info">
+
+                        <strong id="adminUserName">
+                            Election Administrator
+                        </strong>
+
+                        <small id="adminUserRole">
+                            Authorized Administrator
+                        </small>
+
+                    </span>
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="admin-logout-button"
+                    id="adminLogoutButton"
+                >
+                    Sign Out
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         ADMIN NAVIGATION
+    ========================================================== -->
+
+    <nav
+        class="admin-navigation"
+        id="adminNavigation"
+        aria-label="Administration navigation"
+    >
+
+        <div class="container admin-nav-container">
+
+            <a
+                href="#dashboard"
+                class="admin-nav-link active"
+                data-admin-section="dashboard"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="#election"
+                class="admin-nav-link"
+                data-admin-section="election"
+            >
+                Election
+            </a>
+
+            <a
+                href="#candidates"
+                class="admin-nav-link"
+                data-admin-section="candidates"
+            >
+                Candidates
+            </a>
+
+            <a
+                href="#voters"
+                class="admin-nav-link"
+                data-admin-section="voters"
+            >
+                Voters
+            </a>
+
+            <a
+                href="#results"
+                class="admin-nav-link"
+                data-admin-section="results"
+            >
+                Results
+            </a>
+
+            <a
+                href="#audit"
+                class="admin-nav-link"
+                data-admin-section="audit"
+            >
+                Audit Log
+            </a>
+
+            <a
+                href="#security"
+                class="admin-nav-link"
+                data-admin-section="security"
+            >
+                Security
+            </a>
+
+            <a
+                href="#reports"
+                class="admin-nav-link"
+                data-admin-section="reports"
+            >
+                Reports
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main id="main-content">
+
+
+        <!-- =====================================================
+             DASHBOARD OVERVIEW
+        ====================================================== -->
+
+        <section
+            class="admin-section admin-dashboard-section"
+            id="dashboard"
+        >
+
+            <div class="container">
+
+
+                <!-- PAGE HEADER -->
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ELECTION CONTROL CENTRE
+                        </span>
+
+                        <h1>
+                            Election Dashboard
+                        </h1>
+
+                        <p>
+                            Monitor election activity, turnout,
+                            security and system health from one
+                            controlled administration environment.
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-header-actions">
+
+                        <span
+                            class="election-live-badge"
+                            id="electionStatusBadge"
+                        >
+
+                            <span
+                                class="status-dot"
+                                aria-hidden="true"
+                            ></span>
+
+                            Election LIVE
+
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="refreshDashboardButton"
+                        >
+                            Refresh Data
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SECURITY NOTICE -->
+
+                <div class="admin-security-banner">
+
+                    <div
+                        class="security-banner-icon"
+                        aria-hidden="true"
+                    >
+                        🛡
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Protected Administration Area
+                        </strong>
+
+                        <p>
+                            All sensitive administrative actions
+                            should be authenticated, logged and
+                            subject to role-based permissions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     TOP STATISTICS
+                ================================================== -->
+
+                <div class="admin-stat-grid">
+
+
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <span class="admin-stat-label">
+                                TOTAL VOTES
+                            </span>
+
+                            <span
+                                class="admin-stat-icon"
+                                aria-hidden="true"
+                            >
+                                🗳
+                            </span>
+
+                        </div>
+
+                        <strong
+                            class="admin-stat-value"
+                            id="totalVotes"
+                        >
+                            0
+                        </strong>
+
+                        <span
+                            class="admin-stat-change"
+                            id="votesChange"
+                        >
+                            Updating...
+                        </span>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <span class="admin-stat-label">
+                                TURNOUT
+                            </span>
+
+                            <span
+                                class="admin-stat-icon"
+                                aria-hidden="true"
+                            >
+                                👥
+                            </span>
+
+                        </div>
+
+                        <strong
+                            class="admin-stat-value"
+                            id="turnoutPercentage"
+                        >
+                            0%
+                        </strong>
+
+                        <span
+                            class="admin-stat-change"
+                            id="turnoutCount"
+                        >
+                            0 voters
+                        </span>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <span class="admin-stat-label">
+                                POSITIONS
+                            </span>
+
+                            <span
+                                class="admin-stat-icon"
+                                aria-hidden="true"
+                            >
+                                🏛
+                            </span>
+
+                        </div>
+
+                        <strong
+                            class="admin-stat-value"
+                            id="totalPositions"
+                        >
+                            0
+                        </strong>
+
+                        <span>
+                            Active election positions
+                        </span>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <span class="admin-stat-label">
+                                CANDIDATES
+                            </span>
+
+                            <span
+                                class="admin-stat-icon"
+                                aria-hidden="true"
+                            >
+                                👤
+                            </span>
+
+                        </div>
+
+                        <strong
+                            class="admin-stat-value"
+                            id="totalCandidates"
+                        >
+                            0
+                        </strong>
+
+                        <span>
+                            Approved candidates
+                        </span>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <span class="admin-stat-label">
+                                VERIFIED RECORDS
+                            </span>
+
+                            <span
+                                class="admin-stat-icon"
+                                aria-hidden="true"
+                            >
+                                ✓
+                            </span>
+
+                        </div>
+
+                        <strong
+                            class="admin-stat-value"
+                            id="verifiedRecords"
+                        >
+                            0
+                        </strong>
+
+                        <span>
+                            Election integrity records
+                        </span>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <span class="admin-stat-label">
+                                SECURITY ALERTS
+                            </span>
+
+                            <span
+                                class="admin-stat-icon warning"
+                                aria-hidden="true"
+                            >
+                                !
+                            </span>
+
+                        </div>
+
+                        <strong
+                            class="admin-stat-value"
+                            id="securityAlerts"
+                        >
+                            0
+                        </strong>
+
+                        <span>
+                            Requiring attention
+                        </span>
+
+                    </article>
+
+                </div>
+
+
+                <!-- =================================================
+                     ELECTION STATUS
+                ================================================== -->
+
+                <div class="admin-dashboard-grid">
+
+
+                    <section class="admin-panel election-control-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    CURRENT ELECTION
+                                </span>
+
+                                <h2>
+                                    Alupe University Student Elections
+                                </h2>
+
+                            </div>
+
+                            <span
+                                class="panel-status live"
+                                id="electionPanelStatus"
+                            >
+                                LIVE
+                            </span>
+
+                        </div>
+
+
+                        <div class="election-control-details">
+
+                            <div class="control-detail">
+
+                                <span>
+                                    Election ID
+                                </span>
+
+                                <strong id="electionId">
+                                    ALU-ELECT-2026
+                                </strong>
+
+                            </div>
+
+
+                            <div class="control-detail">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <strong id="electionState">
+                                    Voting Open
+                                </strong>
+
+                            </div>
+
+
+                            <div class="control-detail">
+
+                                <span>
+                                    Start
+                                </span>
+
+                                <strong id="electionStart">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="control-detail">
+
+                                <span>
+                                    Scheduled Close
+                                </span>
+
+                                <strong id="electionEnd">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="control-detail">
+
+                                <span>
+                                    Last System Update
+                                </span>
+
+                                <strong id="lastSystemUpdate">
+                                    —
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-action-row">
+
+                            <button
+                                type="button"
+                                class="button button-secondary"
+                                id="pauseElectionButton"
+                            >
+                                Pause Election
+                            </button>
+
+                            <button
+                                type="button"
+                                class="button button-primary"
+                                id="openElectionButton"
+                            >
+                                Open Election
+                            </button>
+
+                            <button
+                                type="button"
+                                class="button button-danger"
+                                id="closeElectionButton"
+                            >
+                                Close Election
+                            </button>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =================================================
+                         SYSTEM HEALTH
+                    ================================================== -->
+
+                    <section class="admin-panel system-health-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    SYSTEM HEALTH
+                                </span>
+
+                                <h2>
+                                    Platform Status
+                                </h2>
+
+                            </div>
+
+                            <span class="panel-status healthy">
+                                Operational
+                            </span>
+
+                        </div>
+
+
+                        <div class="health-list">
+
+
+                            <div class="health-item">
+
+                                <div>
+
+                                    <strong>
+                                        Voting API
+                                    </strong>
+
+                                    <span>
+                                        Core election services
+                                    </span>
+
+                                </div>
+
+                                <span class="health-status healthy">
+                                    Operational
+                                </span>
+
+                            </div>
+
+
+                            <div class="health-item">
+
+                                <div>
+
+                                    <strong>
+                                        Database
+                                    </strong>
+
+                                    <span>
+                                        Election data storage
+                                    </span>
+
+                                </div>
+
+                                <span class="health-status healthy">
+                                    Operational
+                                </span>
+
+                            </div>
+
+
+                            <div class="health-item">
+
+                                <div>
+
+                                    <strong>
+                                        Blockchain Network
+                                    </strong>
+
+                                    <span>
+                                        Election integrity ledger
+                                    </span>
+
+                                </div>
+
+                                <span
+                                    class="health-status"
+                                    id="blockchainHealth"
+                                >
+                                    Checking
+                                </span>
+
+                            </div>
+
+
+                            <div class="health-item">
+
+                                <div>
+
+                                    <strong>
+                                        Authentication
+                                    </strong>
+
+                                    <span>
+                                        Voter identity services
+                                    </span>
+
+                                </div>
+
+                                <span class="health-status healthy">
+                                    Operational
+                                </span>
+
+                            </div>
+
+
+                            <div class="health-item">
+
+                                <div>
+
+                                    <strong>
+                                        Live Results
+                                    </strong>
+
+                                    <span>
+                                        Results distribution
+                                    </span>
+
+                                </div>
+
+                                <span class="health-status healthy">
+                                    Operational
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- =================================================
+                     POSITION SUMMARY
+                ================================================== -->
+
+                <section class="admin-panel">
+
+                    <div class="admin-panel-header">
+
+                        <div>
+
+                            <span class="panel-label">
+                                ELECTION RACES
+                            </span>
+
+                            <h2>
+                                Position Overview
+                            </h2>
+
+                        </div>
+
+                        <a
+                            href="results.html"
+                            class="button button-small button-secondary"
+                        >
+                            View Public Results
+                        </a>
+
+                    </div>
+
+
+                    <div
+                        class="position-admin-grid"
+                        id="positionAdminGrid"
+                    >
+
+                        <!-- Dynamic position cards will be inserted here -->
+
+                        <div class="admin-empty-state">
+
+                            <span
+                                class="empty-icon"
+                                aria-hidden="true"
+                            >
+                                🏛
+                            </span>
+
+                            <h3>
+                                Loading election positions
+                            </h3>
+
+                            <p>
+                                Position data will appear here when
+                                connected to the election API.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ELECTION MANAGEMENT
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="election"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ELECTION MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Configure Election
+                        </h2>
+
+                        <p>
+                            Manage election settings and controlled
+                            election lifecycle actions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-management-grid">
+
+
+                    <section class="admin-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    GENERAL SETTINGS
+                                </span>
+
+                                <h3>
+                                    Election Configuration
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <form
+                            id="electionSettingsForm"
+                            class="admin-form"
+                        >
+
+                            <div class="form-group">
+
+                                <label for="adminElectionName">
+                                    Election name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="adminElectionName"
+                                    value="Alupe University Student Elections"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="adminElectionYear">
+                                    Election year
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="adminElectionYear"
+                                    value="2026"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="adminElectionStatus">
+                                    Election status
+                                </label>
+
+                                <select id="adminElectionStatus">
+
+                                    <option value="draft">
+                                        Draft
+                                    </option>
+
+                                    <option value="scheduled">
+                                        Scheduled
+                                    </option>
+
+                                    <option value="open" selected>
+                                        Open
+                                    </option>
+
+                                    <option value="paused">
+                                        Paused
+                                    </option>
+
+                                    <option value="closed">
+                                        Closed
+                                    </option>
+
+                                    <option value="certified">
+                                        Certified
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="admin-form-row">
+
+                                <div class="form-group">
+
+                                    <label for="adminStartDate">
+                                        Start date/time
+                                    </label>
+
+                                    <input
+                                        type="datetime-local"
+                                        id="adminStartDate"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="adminEndDate">
+                                        End date/time
+                                    </label>
+
+                                    <input
+                                        type="datetime-local"
+                                        id="adminEndDate"
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="adminLiveResultsMode">
+                                    Live results mode
+                                </label>
+
+                                <select id="adminLiveResultsMode">
+
+                                    <option value="full">
+                                        Full provisional candidate totals
+                                    </option>
+
+                                    <option value="turnout">
+                                        Turnout only
+                                    </option>
+
+                                    <option value="disabled">
+                                        Disabled
+                                    </option>
+
+                                </select>
+
+                                <small>
+                                    Must follow the university's approved
+                                    election rules.
+                                </small>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="button button-primary"
+                            >
+                                Save Election Settings
+                            </button>
+
+                        </form>
+
+                    </section>
+
+
+                    <section class="admin-panel critical-actions-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label warning-label">
+                                    CRITICAL ACTIONS
+                                </span>
+
+                                <h3>
+                                    Election Controls
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="critical-action-list">
+
+
+                            <button
+                                type="button"
+                                class="critical-action"
+                                id="criticalPauseElection"
+                            >
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ⏸
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Pause Election
+                                    </strong>
+
+                                    <small>
+                                        Temporarily stop ballot
+                                        submissions.
+                                    </small>
+
+                                </div>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="critical-action"
+                                id="criticalCloseElection"
+                            >
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ⏹
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Close Election
+                                    </strong>
+
+                                    <small>
+                                        Permanently end ballot
+                                        submission for this election.
+                                    </small>
+
+                                </div>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="critical-action"
+                                id="criticalFreezeResults"
+                            >
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ❄
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Freeze Results
+                                    </strong>
+
+                                    <small>
+                                        Freeze result calculations for
+                                        final reconciliation.
+                                    </small>
+
+                                </div>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="critical-action"
+                                id="criticalCertifyElection"
+                            >
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Certify Final Results
+                                    </strong>
+
+                                    <small>
+                                        Mark the election as officially
+                                        certified after authorization.
+                                    </small>
+
+                                </div>
+
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CANDIDATE MANAGEMENT
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="candidates"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            CANDIDATE MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Candidates
+                        </h2>
+
+                        <p>
+                            Review approved candidates, positions,
+                            symbols and election eligibility.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="button button-primary"
+                        id="addCandidateButton"
+                        data-requires-permission="candidate.manage"
+                    >
+                        Add Candidate
+                    </button>
+
+                </div>
+
+
+                <section class="admin-panel">
+
+                    <div class="admin-toolbar">
+
+                        <div class="admin-search">
+
+                            <label
+                                for="candidateAdminSearch"
+                                class="sr-only"
+                            >
+                                Search candidates
+                            </label>
+
+                            <input
+                                type="search"
+                                id="candidateAdminSearch"
+                                placeholder="Search candidate..."
+                            >
+
+                        </div>
+
+
+                        <select
+                            id="candidatePositionFilter"
+                        >
+
+                            <option value="all">
+                                All positions
+                            </option>
+
+                        </select>
+
+
+                        <select
+                            id="candidateStatusFilter"
+                        >
+
+                            <option value="all">
+                                All statuses
+                            </option>
+
+                            <option value="approved">
+                                Approved
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="suspended">
+                                Suspended
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        class="admin-table-wrapper"
+                        id="candidateTableContainer"
+                    >
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Candidate
+                                    </th>
+
+                                    <th>
+                                        Position
+                                    </th>
+
+                                    <th>
+                                        School
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Votes
+                                    </th>
+
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="candidateTableBody">
+
+                                <tr>
+
+                                    <td colspan="6">
+
+                                        <div class="table-empty-state">
+
+                                            Loading candidate data...
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VOTER MANAGEMENT
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="voters"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            VOTER MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Voter Eligibility
+                        </h2>
+
+                        <p>
+                            Manage eligibility records without exposing
+                            secret ballot selections.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-stat-grid compact">
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-label">
+                            ELIGIBLE VOTERS
+                        </span>
+
+                        <strong
+                            id="eligibleVoters"
+                            class="admin-stat-value"
+                        >
+                            0
+                        </strong>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-label">
+                            VOTED
+                        </span>
+
+                        <strong
+                            id="votersWhoVoted"
+                            class="admin-stat-value"
+                        >
+                            0
+                        </strong>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-label">
+                            REMAINING
+                        </span>
+
+                        <strong
+                            id="votersRemaining"
+                            class="admin-stat-value"
+                        >
+                            0
+                        </strong>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-label">
+                            FLAGGED
+                        </span>
+
+                        <strong
+                            id="flaggedVoters"
+                            class="admin-stat-value"
+                        >
+                            0
+                        </strong>
+
+                    </article>
+
+                </div>
+
+
+                <section class="admin-panel">
+
+                    <div class="admin-panel-header">
+
+                        <div>
+
+                            <span class="panel-label">
+                                ELIGIBILITY RECORDS
+                            </span>
+
+                            <h3>
+                                Voter Status
+                            </h3>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="refreshVotersButton"
+                            data-requires-permission="voter.manage"
+                        >
+                            Refresh
+                        </button>
+
+                    </div>
+
+
+                    <div class="privacy-warning">
+
+                        <span
+                            aria-hidden="true"
+                        >
+                            🔒
+                        </span>
+
+                        <p>
+                            Voter eligibility information must remain
+                            separate from secret ballot selections.
+                            Administrators must never receive a
+                            dashboard view that links a student's
+                            identity to their candidate choices.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="admin-table-wrapper"
+                    >
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Voter Reference
+                                    </th>
+
+                                    <th>
+                                        School
+                                    </th>
+
+                                    <th>
+                                        Eligibility
+                                    </th>
+
+                                    <th>
+                                        Voting Status
+                                    </th>
+
+                                    <!--
+                                        This column used to read "Last
+                                        Activity". The system deliberately
+                                        keeps no per-voter timestamps:
+                                        knowing exactly when each student
+                                        voted, beside the order ballots were
+                                        recorded, is enough to start
+                                        unpicking a secret ballot. It shows
+                                        the restriction on the record
+                                        instead, which is real data.
+                                    -->
+                                    <th>
+                                        Restriction
+                                    </th>
+
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="voterTableBody">
+
+                                <tr>
+
+                                    <td colspan="6">
+
+                                        <div class="table-empty-state">
+
+                                            Voter records will appear
+                                            here after authentication
+                                            and database integration.
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RESULTS MANAGEMENT
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="results"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            RESULTS CONTROL
+                        </span>
+
+                        <h2>
+                            Live Results Management
+                        </h2>
+
+                        <p>
+                            Monitor provisional results and ensure
+                            public displays reflect the authorized
+                            election state.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="results.html"
+                        class="button button-secondary"
+                    >
+                        Open Public Results
+                    </a>
+
+                </div>
+
+
+                <div class="results-admin-grid">
+
+
+                    <!-- Live result status -->
+
+                    <section class="admin-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    PUBLIC DISPLAY
+                                </span>
+
+                                <h3>
+                                    Live Results Status
+                                </h3>
+
+                            </div>
+
+                            <span
+                                class="panel-status live"
+                                id="publicResultsStatus"
+                            >
+                                LIVE
+                            </span>
+
+                        </div>
+
+
+                        <div class="results-control-options">
+
+                            <label class="toggle-control">
+
+                                <input
+                                    type="checkbox"
+                                    id="enablePublicResults"
+                                data-requires-permission="results.publish"
+                                    checked
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                                <span>
+                                    Publish provisional results
+                                </span>
+
+                            </label>
+
+
+                            <label class="toggle-control">
+
+                                <input
+                                    type="checkbox"
+                                    id="showExactVoteTotals"
+                                    checked
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                                <span>
+                                    Show exact candidate vote totals
+                                </span>
+
+                            </label>
+
+
+                            <label class="toggle-control">
+
+                                <input
+                                    type="checkbox"
+                                    id="showTurnoutBySchool"
+                                    checked
+                                >
+
+                                <span class="toggle-slider"></span>
+
+                                <span>
+                                    Show school-level turnout
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="admin-warning-box">
+
+                            <strong>
+                                Provisional results
+                            </strong>
+
+                            <p>
+                                Public live results must clearly state
+                                that they are provisional until the
+                                election is officially closed,
+                                reconciled and certified.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- Results summary -->
+
+                    <section class="admin-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    RESULTS ENGINE
+                                </span>
+
+                                <h3>
+                                    Calculation Status
+                                </h3>
+
+                            </div>
+
+                            <span class="panel-status healthy">
+                                Operational
+                            </span>
+
+                        </div>
+
+
+                        <div class="results-engine-status">
+
+                            <div>
+
+                                <span>
+                                    Last calculation
+                                </span>
+
+                                <strong id="lastResultsCalculation">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Records processed
+                                </span>
+
+                                <strong id="recordsProcessed">
+                                    0
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Integrity check
+                                </span>
+
+                                <strong id="resultsIntegrityStatus">
+                                    Pending
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             AUDIT LOG
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="audit"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            AUDIT TRAIL
+                        </span>
+
+                        <h2>
+                            Election Audit Log
+                        </h2>
+
+                        <p>
+                            Review security-relevant and
+                            election-management events.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        id="exportAuditLogButton"
+                        data-requires-permission="audit.view"
+                    >
+                        Export Audit Log
+                    </button>
+
+                </div>
+
+
+                <section class="admin-panel">
+
+                    <div class="admin-toolbar">
+
+                        <select id="auditEventFilter">
+
+                            <option value="all">
+                                All Events
+                            </option>
+
+                            <option value="authentication">
+                                Authentication
+                            </option>
+
+                            <option value="voting">
+                                Voting
+                            </option>
+
+                            <option value="administration">
+                                Administration
+                            </option>
+
+                            <option value="security">
+                                Security
+                            </option>
+
+                            <option value="blockchain">
+                                Blockchain
+                            </option>
+
+                        </select>
+
+
+                        <select id="auditSeverityFilter">
+
+                            <option value="all">
+                                All Severity
+                            </option>
+
+                            <option value="info">
+                                Information
+                            </option>
+
+                            <option value="warning">
+                                Warning
+                            </option>
+
+                            <option value="critical">
+                                Critical
+                            </option>
+
+                        </select>
+
+
+                        <input
+                            type="date"
+                            id="auditDateFilter"
+                        >
+
+                    </div>
+
+
+                    <div class="audit-log" id="auditLog">
+
+
+                        <div class="audit-event">
+
+                            <div
+                                class="audit-event-icon info"
+                                aria-hidden="true"
+                            >
+                                i
+                            </div>
+
+                            <div class="audit-event-content">
+
+                                <strong>
+                                    Audit log initialized
+                                </strong>
+
+                                <p>
+                                    Waiting for election events from
+                                    the secure API.
+                                </p>
+
+                            </div>
+
+                            <time>
+                                —
+                            </time>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BLOCKCHAIN / INTEGRITY
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="blockchain"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ELECTION INTEGRITY
+                        </span>
+
+                        <h2>
+                            Blockchain & Integrity
+                        </h2>
+
+                        <p>
+                            Monitor the permissioned election ledger
+                            and cryptographic integrity commitments.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="blockchain-admin-grid">
+
+
+                    <section class="admin-panel blockchain-status-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    LEDGER STATUS
+                                </span>
+
+                                <h3>
+                                    Permissioned Blockchain
+                                </h3>
+
+                            </div>
+
+                            <span
+                                class="panel-status"
+                                id="ledgerStatus"
+                            >
+                                Checking
+                            </span>
+
+                        </div>
+
+
+                        <div class="ledger-admin-details">
+
+                            <div>
+
+                                <span>
+                                    Network
+                                </span>
+
+                                <strong id="ledgerNetwork">
+                                    ALU-ELECT Election Network
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Latest Block
+                                </span>
+
+                                <strong id="latestBlock">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Latest Block Time
+                                </span>
+
+                                <strong id="latestBlockTime">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Network Nodes
+                                </span>
+
+                                <strong id="networkNodes">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Consensus Status
+                                </span>
+
+                                <strong id="consensusStatus">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Integrity
+                                </span>
+
+                                <strong id="ledgerIntegrity">
+                                    —
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="button button-primary"
+                            id="runBlockchainVerification"
+                        >
+                            Run Integrity Check
+                        </button>
+
+                    </section>
+
+
+                    <section class="admin-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    CRYPTOGRAPHIC PROOF
+                                </span>
+
+                                <h3>
+                                    Election Commitment
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="hash-display">
+
+                            <span>
+                                Current Election Hash
+                            </span>
+
+                            <code id="electionHash">
+                                Waiting for election commitment...
+                            </code>
+
+                            <button
+                                type="button"
+                                class="button button-small button-secondary"
+                                id="copyElectionHash"
+                            >
+                                Copy Hash
+                            </button>
+
+                        </div>
+
+
+                        <p class="panel-help-text">
+                            This information is intended for
+                            authorized election verification and
+                            auditing. Never place private voter
+                            information or raw secret ballot contents
+                            into a public blockchain record.
+                        </p>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SECURITY
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="security"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            SECURITY OPERATIONS
+                        </span>
+
+                        <h2>
+                            Security Centre
+                        </h2>
+
+                        <p>
+                            Monitor authentication events, suspicious
+                            activity and security controls.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="security-admin-grid">
+
+
+                    <section class="admin-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    SECURITY STATUS
+                                </span>
+
+                                <h3>
+                                    Protection Layers
+                                </h3>
+
+                            </div>
+
+                            <span class="panel-status healthy">
+                                Protected
+                            </span>
+
+                        </div>
+
+
+                        <div class="security-check-list">
+
+
+                            <div class="security-check">
+
+                                <span
+                                    class="security-check-icon healthy"
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Authentication
+                                    </strong>
+
+                                    <span>
+                                        Identity service operational
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="security-check">
+
+                                <span
+                                    class="security-check-icon healthy"
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Encryption
+                                    </strong>
+
+                                    <span>
+                                        Protected data channels active
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="security-check">
+
+                                <span
+                                    class="security-check-icon healthy"
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Rate Limiting
+                                    </strong>
+
+                                    <span>
+                                        Abuse protection enabled
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="security-check">
+
+                                <span
+                                    class="security-check-icon healthy"
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Audit Logging
+                                    </strong>
+
+                                    <span>
+                                        Security events being recorded
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="security-check">
+
+                                <span
+                                    class="security-check-icon healthy"
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Administrative Authorization
+                                    </strong>
+
+                                    <span>
+                                        Role-based access controls active
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <section class="admin-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="panel-label warning-label">
+                                    SECURITY EVENTS
+                                </span>
+
+                                <h3>
+                                    Recent Alerts
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="security-alert-list"
+                            id="securityAlertList"
+                        >
+
+                            <div class="security-alert empty">
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        No active alerts
+                                    </strong>
+
+                                    <p>
+                                        Security events will appear
+                                        here when detected.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- Authentication events -->
+
+                <section class="admin-panel">
+
+                    <div class="admin-panel-header">
+
+                        <div>
+
+                            <span class="panel-label">
+                                AUTHENTICATION MONITOR
+                            </span>
+
+                            <h3>
+                                Recent Authentication Activity
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Event
+                                    </th>
+
+                                    <th>
+                                        Account Reference
+                                    </th>
+
+                                    <th>
+                                        Source
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Time
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="authenticationTableBody">
+
+                                <tr>
+
+                                    <td colspan="5">
+
+                                        <div class="table-empty-state">
+
+                                            Authentication events will
+                                            appear here.
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             REPORTS
+        ====================================================== -->
+
+        <section
+            class="admin-section"
+            id="reports"
+        >
+
+            <div class="container">
+
+                <div class="admin-page-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ELECTION REPORTING
+                        </span>
+
+                        <h2>
+                            Reports & Exports
+                        </h2>
+
+                        <p>
+                            Generate authorized election reports for
+                            review, audit and final certification.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-grid">
+
+
+                    <article class="report-card">
+
+                        <div
+                            class="report-icon"
+                            aria-hidden="true"
+                        >
+                            📊
+                        </div>
+
+                        <h3>
+                            Election Summary
+                        </h3>
+
+                        <p>
+                            Overall turnout, participation, positions
+                            and candidate statistics.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            data-report="summary"
+                        >
+                            Generate Report
+                        </button>
+
+                    </article>
+
+
+                    <article class="report-card">
+
+                        <div
+                            class="report-icon"
+                            aria-hidden="true"
+                        >
+                            🗳
+                        </div>
+
+                        <h3>
+                            Results Report
+                        </h3>
+
+                        <p>
+                            Position-by-position provisional or final
+                            election results.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            data-report="results"
+                        >
+                            Generate Report
+                        </button>
+
+                    </article>
+
+
+                    <article class="report-card">
+
+                        <div
+                            class="report-icon"
+                            aria-hidden="true"
+                        >
+                            🔐
+                        </div>
+
+                        <h3>
+                            Security Report
+                        </h3>
+
+                        <p>
+                            Authentication, security alerts and
+                            administrative activity.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            data-report="security"
+                        >
+                            Generate Report
+                        </button>
+
+                    </article>
+
+
+                    <article class="report-card">
+
+                        <div
+                            class="report-icon"
+                            aria-hidden="true"
+                        >
+                            ⛓
+                        </div>
+
+                        <h3>
+                            Integrity Report
+                        </h3>
+
+                        <p>
+                            Cryptographic commitments, ledger status and
+                            election integrity checks.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            data-report="integrity"
+                        >
+                            Generate Report
+                        </button>
+
+                    </article>
+
+
+                    <article class="report-card">
+
+                        <div
+                            class="report-icon"
+                            aria-hidden="true"
+                        >
+                            📋
+                        </div>
+
+                        <h3>
+                            Audit Report
+                        </h3>
+
+                        <p>
+                            Comprehensive authorized election audit
+                            trail.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            data-report="audit"
+                        >
+                            Generate Report
+                        </button>
+
+                    </article>
+
+
+                    <article class="report-card">
+
+                        <div
+                            class="report-icon"
+                            aria-hidden="true"
+                        >
+                            📦
+                        </div>
+
+                        <h3>
+                            Election Archive
+                        </h3>
+
+                        <p>
+                            Prepare the approved election evidence
+                            package for secure archival.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            data-report="archive"
+                        >
+                            Prepare Archive
+                        </button>
+
+                    </article>
+
+                </div>
+
+
+                <div class="archive-warning">
+
+                    <span
+                        aria-hidden="true"
+                    >
+                        ⚠
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Archive carefully
+                        </strong>
+
+                        <p>
+                            Election archives must follow approved
+                            university retention, privacy and access
+                            policies. Secret ballot contents must not
+                            be exposed through administrative exports.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ADMIN ACTION CONFIRMATION MODAL
+        ====================================================== -->
+
+        <div
+            class="admin-modal"
+            id="adminConfirmationModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="adminConfirmationTitle"
+            hidden
+        >
+
+            <div class="admin-modal-overlay"
+                data-close-admin-modal>
+            </div>
+
+
+            <div class="admin-modal-content">
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeAdminConfirmation"
+                    aria-label="Close confirmation dialog"
+                >
+                    ×
+                </button>
+
+
+                <div
+                    class="modal-warning-icon"
+                    aria-hidden="true"
+                >
+                    !
+                </div>
+
+
+                <span class="eyebrow">
+                    AUTHORIZATION REQUIRED
+                </span>
+
+
+                <h2 id="adminConfirmationTitle">
+                    Confirm Administrative Action
+                </h2>
+
+
+                <p id="adminConfirmationMessage">
+                    This action can affect the election state.
+                    Confirm only if you are authorized to continue.
+                </p>
+
+
+                <div class="admin-confirmation-details">
+
+                    <div>
+
+                        <span>
+                            Action
+                        </span>
+
+                        <strong id="confirmationAction">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                        <strong id="confirmationAdministrator">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-authentication-field">
+
+                    <label for="adminConfirmationCode">
+                        Authorization code
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminConfirmationCode"
+                        autocomplete="one-time-code"
+                        placeholder="Enter authorization code"
+                    >
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        id="cancelAdminAction"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="button"
+                        class="button button-danger"
+                        id="confirmAdminAction"
+                    >
+                        Confirm Action
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             CANDIDATE MODAL
+        ====================================================== -->
+
+        <div
+            class="admin-modal"
+            id="candidateModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="candidateModalTitle"
+            hidden
+        >
+
+            <div
+                class="admin-modal-overlay"
+                data-close-candidate-modal
+            ></div>
+
+
+            <div class="admin-modal-content">
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeCandidateModal"
+                    aria-label="Close candidate dialog"
+                >
+                    ×
+                </button>
+
+
+                <span class="eyebrow">
+                    CANDIDATE MANAGEMENT
+                </span>
+
+
+                <h2 id="candidateModalTitle">
+                    Add Candidate
+                </h2>
+
+
+                <form
+                    id="candidateForm"
+                    class="admin-form"
+                >
+
+                    <input
+                        type="hidden"
+                        id="candidateId"
+                    >
+
+
+                    <div class="form-group">
+
+                        <label for="candidateName">
+                            Candidate name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="candidateName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="candidatePosition">
+                            Position
+                        </label>
+
+                        <select
+                            id="candidatePosition"
+                            required
+                        >
+
+                            <option value="">
+                                Select position
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="candidateSchool">
+                            School
+                        </label>
+
+                        <input
+                            type="text"
+                            id="candidateSchool"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="candidateProgramme">
+                            Programme
+                        </label>
+
+                        <input
+                            type="text"
+                            id="candidateProgramme"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="candidateSymbol">
+                            Election symbol
+                        </label>
+
+                        <input
+                            type="text"
+                            id="candidateSymbol"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="candidateStatus">
+                            Status
+                        </label>
+
+                        <select id="candidateStatus">
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="approved">
+                                Approved
+                            </option>
+
+                            <option value="suspended">
+                                Suspended
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="modal-actions">
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="cancelCandidateButton"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="button button-primary"
+                        >
+                            Save Candidate
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             ADMIN TOAST / NOTIFICATIONS
+        ====================================================== -->
+
+        <div
+            class="admin-toast-container"
+            id="adminToastContainer"
+            aria-live="polite"
+            aria-atomic="true"
+        ></div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="admin-footer">
+
+        <div class="container admin-footer-container">
+
+            <div>
+
+                <strong>
+                    ALU-ELECT
+                </strong>
+
+                <span>
+                    Secure Election Administration
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Protected Administrative Environment
+                </span>
+
+                <span>
+                    © 2026 ALU-ELECT
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         Functionality will be implemented during JS phase.
+    ========================================================== -->
+
+    </div><!-- /#adminShell -->
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+</html>

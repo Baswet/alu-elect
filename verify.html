@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Verify your ALU-ELECT vote and review election verification information."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1f3a"
+    >
+
+    <title>Verify Vote | ALU-ELECT</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         ACCESSIBILITY
+    ========================================================== -->
+
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Skip to verification
+    </a>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="site-header" id="siteHeader">
+
+        <div class="container nav-container">
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="ALU-ELECT Home"
+            >
+
+                <div
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
+                    AE
+                </div>
+
+                <div class="brand-text">
+
+                    <span class="brand-name">
+                        ALU-ELECT
+                    </span>
+
+                    <span class="brand-tagline">
+                        Your Vote. Your Voice. Verifiable.
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <button
+                class="mobile-menu-toggle"
+                id="mobileMenuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <nav
+                class="main-navigation"
+                id="mainNavigation"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-link"
+                >
+                    Election
+                </a>
+
+                <a
+                    href="candidates.html"
+                    class="nav-link"
+                >
+                    Candidates
+                </a>
+
+                <a
+                    href="results.html"
+                    class="nav-link"
+                >
+                    Live Results
+                </a>
+
+                <a
+                    href="verify.html"
+                    class="nav-link active"
+                    aria-current="page"
+                >
+                    Verify Vote
+                </a>
+
+                <a
+                    href="how-it-works.html"
+                    class="nav-link"
+                >
+                    How It Works
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-button"
+                >
+                    Enter Election
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main id="main-content">
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="page-hero verification-hero">
+
+            <div class="container">
+
+                <div class="page-hero-content">
+
+                    <div class="live-status-badge">
+
+                        <span
+                            class="status-dot"
+                            aria-hidden="true"
+                        ></span>
+
+                        <span>
+                            Election Verification
+                        </span>
+
+                    </div>
+
+
+                    <p class="eyebrow">
+                        ALU-ELECT VERIFICATION CENTRE
+                    </p>
+
+
+                    <h1>
+                        Verify Your Vote
+                    </h1>
+
+
+                    <p>
+                        Enter your verification reference to check
+                        whether your ballot was successfully recorded.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VERIFICATION FORM
+        ====================================================== -->
+
+        <section class="vote-verification-section section">
+
+            <div class="container verification-layout">
+
+
+                <!-- =================================================
+                     VERIFICATION FORM
+                ================================================== -->
+
+                <div class="verification-form-column">
+
+                    <div class="verification-form-card">
+
+                        <div class="verification-form-header">
+
+                            <div
+                                class="verification-form-icon"
+                                aria-hidden="true"
+                            >
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <span class="card-label">
+                                    VOTE RECEIPT
+                                </span>
+
+                                <h2>
+                                    Check your vote
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <p>
+                            Enter the verification reference you
+                            received after submitting your ballot.
+                        </p>
+
+
+                        <form
+                            id="verificationForm"
+                            novalidate
+                        >
+
+                            <div class="form-group">
+
+                                <label
+                                    for="receiptId"
+                                >
+                                    Verification reference
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="receiptId"
+                                    name="receiptId"
+                                    placeholder="e.g. ALU-XXXX-XXXX-XXXX"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                    required
+                                    minlength="8"
+                                    maxlength="100"
+                                    aria-describedby="receiptHelp receiptError"
+                                >
+
+                                <small id="receiptHelp">
+                                    Enter the reference exactly as it
+                                    appears on your voting receipt.
+                                </small>
+
+                                <div
+                                    class="form-error"
+                                    id="receiptError"
+                                    role="alert"
+                                    aria-live="polite"
+                                ></div>
+
+                            </div>
+
+
+                            <!-- Optional election reference -->
+
+                            <div class="form-group">
+
+                                <label
+                                    for="electionReference"
+                                >
+                                    Election
+                                </label>
+
+                                <select
+                                    id="electionReference"
+                                    name="electionReference"
+                                >
+
+                                    <option value="current">
+                                        Current Alupe University Election
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Human verification hook -->
+
+                            <div
+                                class="verification-challenge"
+                                id="verificationChallenge"
+                            >
+
+                                <div class="challenge-placeholder">
+
+                                    <span
+                                        aria-hidden="true"
+                                    >
+                                        🔐
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Security verification
+                                        </strong>
+
+                                        <p>
+                                            Additional verification may
+                                            be required before accessing
+                                            election records.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <!--
+                                    Future authentication / anti-bot
+                                    challenge can be inserted here.
+                                -->
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="button button-primary button-full"
+                                id="verifyVoteButton"
+                            >
+                                Verify My Vote
+                            </button>
+
+                        </form>
+
+
+                        <!-- =================================================
+                             VERIFICATION LOADING
+                        ================================================== -->
+
+                        <div
+                            class="verification-loading"
+                            id="verificationLoading"
+                            hidden
+                            aria-live="polite"
+                        >
+
+                            <div
+                                class="loading-spinner"
+                                aria-hidden="true"
+                            ></div>
+
+                            <strong>
+                                Checking election records...
+                            </strong>
+
+                            <p>
+                                Please wait while the verification
+                                request is processed.
+                            </p>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             VERIFICATION RESULT
+                        ================================================== -->
+
+                        <div
+                            class="verification-result"
+                            id="verificationResult"
+                            hidden
+                            aria-live="polite"
+                        >
+
+                            <div
+                                class="verification-result-icon"
+                                id="verificationResultIcon"
+                                aria-hidden="true"
+                            >
+                                ✓
+                            </div>
+
+
+                            <span
+                                class="eyebrow"
+                                id="verificationResultLabel"
+                            >
+                                VERIFIED
+                            </span>
+
+
+                            <h2 id="verificationResultTitle">
+                                Your vote was recorded.
+                            </h2>
+
+
+                            <p id="verificationResultMessage">
+                                The election record confirms that your
+                                ballot was successfully recorded.
+                            </p>
+
+
+                            <div class="verification-result-details">
+
+                                <div>
+
+                                    <span>
+                                        Verification reference
+                                    </span>
+
+                                    <strong id="verifiedReceiptId">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Election
+                                    </span>
+
+                                    <strong id="verifiedElection">
+                                        Alupe University Student Elections
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Record status
+                                    </span>
+
+                                    <strong id="verifiedRecordStatus">
+                                        Recorded
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Verification time
+                                    </span>
+
+                                    <strong id="verificationTimestamp">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="verification-privacy-message">
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    🔒
+                                </span>
+
+                                <p>
+                                    Verification confirms that your
+                                    ballot was recorded. It does not
+                                    display your candidate selections.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="button button-secondary"
+                                id="verifyAnotherVote"
+                            >
+                                Verify Another Reference
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     HOW VERIFICATION WORKS
+                ================================================== -->
+
+                <aside class="verification-info-column">
+
+                    <div class="verification-info-card">
+
+                        <span class="eyebrow">
+                            WHAT IS VERIFIED?
+                        </span>
+
+                        <h2>
+                            Your vote, not your choice.
+                        </h2>
+
+                        <p>
+                            The verification system is designed to
+                            confirm that your ballot exists in the
+                            election record without publicly revealing
+                            the candidate selections associated with
+                            your ballot.
+                        </p>
+
+
+                        <div class="verification-info-list">
+
+                            <div class="verification-info-item">
+
+                                <span>
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Record exists
+                                    </strong>
+
+                                    <p>
+                                        Your ballot has a corresponding
+                                        protected election record.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="verification-info-item">
+
+                                <span>
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Record integrity
+                                    </strong>
+
+                                    <p>
+                                        Cryptographic information can
+                                        be checked for unauthorized
+                                        alteration.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="verification-info-item">
+
+                                <span>
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Ballot privacy
+                                    </strong>
+
+                                    <p>
+                                        Verification does not expose
+                                        your candidate selections.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Security card -->
+
+                    <div class="side-information-card">
+
+                        <div
+                            class="side-card-icon"
+                            aria-hidden="true"
+                        >
+                            🔐
+                        </div>
+
+                        <h3>
+                            Your privacy matters
+                        </h3>
+
+                        <p>
+                            Never enter your university password,
+                            PIN or other sensitive authentication
+                            credentials into the verification form.
+                        </p>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ELECTION PROOF
+        ====================================================== -->
+
+        <section class="election-proof-section section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        ELECTION INTEGRITY
+                    </span>
+
+                    <h2>
+                        Verify the election itself.
+                    </h2>
+
+                    <p>
+                        Vote verification is only one part of election
+                        transparency. Authorized election observers can
+                        also inspect protected election proofs and
+                        audit information.
+                    </p>
+
+                </div>
+
+
+                <div class="proof-grid">
+
+
+                    <!-- Proof 1 -->
+
+                    <article class="proof-card">
+
+                        <div class="proof-number">
+                            01
+                        </div>
+
+                        <div
+                            class="proof-icon"
+                            aria-hidden="true"
+                        >
+                            ⛓
+                        </div>
+
+                        <h3>
+                            Election Record
+                        </h3>
+
+                        <p>
+                            Important election records can be linked
+                            to cryptographic commitments that make
+                            unauthorized modification detectable.
+                        </p>
+
+                        <span class="proof-status">
+                            Protected
+                        </span>
+
+                    </article>
+
+
+                    <!-- Proof 2 -->
+
+                    <article class="proof-card">
+
+                        <div class="proof-number">
+                            02
+                        </div>
+
+                        <div
+                            class="proof-icon"
+                            aria-hidden="true"
+                        >
+                            🔎
+                        </div>
+
+                        <h3>
+                            Audit Trail
+                        </h3>
+
+                        <p>
+                            Critical system events can be recorded for
+                            authorized review without exposing secret
+                            ballot selections.
+                        </p>
+
+                        <span class="proof-status">
+                            Auditable
+                        </span>
+
+                    </article>
+
+
+                    <!-- Proof 3 -->
+
+                    <article class="proof-card">
+
+                        <div class="proof-number">
+                            03
+                        </div>
+
+                        <div
+                            class="proof-icon"
+                            aria-hidden="true"
+                        >
+                            ✓
+                        </div>
+
+                        <h3>
+                            Final Results
+                        </h3>
+
+                        <p>
+                            After the election closes, authorized
+                            officials can verify the final result
+                            before certification.
+                        </p>
+
+                        <span class="proof-status">
+                            Certifiable
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VERIFICATION STEPS
+        ====================================================== -->
+
+        <section class="verification-steps-section section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        SIMPLE PROCESS
+                    </span>
+
+                    <h2>
+                        How to verify your vote
+                    </h2>
+
+                </div>
+
+
+                <div class="verification-steps">
+
+
+                    <div class="verification-step">
+
+                        <span class="step-number">
+                            1
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Find your reference
+                            </h3>
+
+                            <p>
+                                Locate the verification reference
+                                provided after you submitted your
+                                ballot.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-step">
+
+                        <span class="step-number">
+                            2
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Enter the reference
+                            </h3>
+
+                            <p>
+                                Enter the reference into the secure
+                                verification form on this page.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-step">
+
+                        <span class="step-number">
+                            3
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Check the record
+                            </h3>
+
+                            <p>
+                                The system checks the protected
+                                election records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-step">
+
+                        <span class="step-number">
+                            4
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Receive confirmation
+                            </h3>
+
+                            <p>
+                                You receive a confirmation that the
+                                ballot record exists and passes the
+                                available integrity checks.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FAQ / IMPORTANT INFORMATION
+        ====================================================== -->
+
+        <section class="verification-faq-section section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        IMPORTANT
+                    </span>
+
+                    <h2>
+                        Verification questions
+                    </h2>
+
+                </div>
+
+
+                <div class="faq-list">
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Does verification show who I voted for?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                No. The verification process is
+                                designed to confirm that a ballot was
+                                recorded without displaying the voter's
+                                candidate selections.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What if my reference cannot be found?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                First check that the reference was
+                                entered exactly as provided. If the
+                                problem continues, contact the
+                                authorized election support team.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Can I use somebody else's reference?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Verification references should be
+                                treated as private election records.
+                                Only use the reference issued for your
+                                own ballot.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Does blockchain mean the system cannot be hacked?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                No system should be described as
+                                impossible to hack. ALU-ELECT is
+                                designed with multiple security layers,
+                                and blockchain or cryptographic records
+                                are used as part of the overall
+                                integrity and audit architecture.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <section class="cta-section section">
+
+            <div class="container cta-container">
+
+                <div class="cta-content">
+
+                    <span class="eyebrow">
+                        ALU-ELECT
+                    </span>
+
+                    <h2>
+                        Your vote. Your voice. Verifiable.
+                    </h2>
+
+                    <p>
+                        Explore the election, review candidates and
+                        follow live results.
+                    </p>
+
+                </div>
+
+
+                <div class="cta-actions">
+
+                    <a
+                        href="election.html"
+                        class="button button-primary button-large"
+                    >
+                        Enter Election
+                    </a>
+
+                    <a
+                        href="results.html"
+                        class="button button-secondary button-large"
+                    >
+                        Live Results
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand footer-logo"
+                >
+
+                    <div
+                        class="brand-mark"
+                        aria-hidden="true"
+                    >
+                        AE
+                    </div>
+
+                    <div class="brand-text">
+
+                        <span class="brand-name">
+                            ALU-ELECT
+                        </span>
+
+                        <span class="brand-tagline">
+                            Your Vote. Your Voice. Verifiable.
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <p>
+                    Secure, transparent and verifiable student
+                    election technology.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Election
+                </h3>
+
+                <a href="election.html">
+                    Vote
+                </a>
+
+                <a href="candidates.html">
+                    Candidates
+                </a>
+
+                <a href="results.html">
+                    Live Results
+                </a>
+
+                <a href="verify.html">
+                    Verify Vote
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Information
+                </h3>
+
+                <a href="how-it-works.html">
+                    How It Works
+                </a>
+
+                <a href="results.html">
+                    Election Statistics
+                </a>
+
+                <a href="verify.html">
+                    Election Verification
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Security
+                </h3>
+
+                <span>
+                    Protected Voting
+                </span>
+
+                <span>
+                    Tamper-Evident Records
+                </span>
+
+                <span>
+                    Audit-Ready Election
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="currentYear">2026</span>
+                ALU-ELECT. All rights reserved.
+            </p>
+
+            <p>
+                Your Vote. Your Voice. Verifiable.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         Verification functionality will be implemented later.
+    ========================================================== -->
+
+    <script src="js/app.js"></script>
+    <script src="js/verify.js"></script>
+
+</body>
+</html>

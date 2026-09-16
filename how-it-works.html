@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Learn how ALU-ELECT works, from voter authentication and ballot privacy to blockchain-backed election verification."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1f3a"
+    >
+
+    <title>How It Works | ALU-ELECT</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         ACCESSIBILITY
+    ========================================================== -->
+
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Skip to main content
+    </a>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="site-header" id="siteHeader">
+
+        <div class="container nav-container">
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="ALU-ELECT Home"
+            >
+
+                <div
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
+                    AE
+                </div>
+
+                <div class="brand-text">
+
+                    <span class="brand-name">
+                        ALU-ELECT
+                    </span>
+
+                    <span class="brand-tagline">
+                        Your Vote. Your Voice. Verifiable.
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <button
+                class="mobile-menu-toggle"
+                id="mobileMenuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <nav
+                class="main-navigation"
+                id="mainNavigation"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-link"
+                >
+                    Election
+                </a>
+
+                <a
+                    href="candidates.html"
+                    class="nav-link"
+                >
+                    Candidates
+                </a>
+
+                <a
+                    href="results.html"
+                    class="nav-link"
+                >
+                    Live Results
+                </a>
+
+                <a
+                    href="verify.html"
+                    class="nav-link"
+                >
+                    Verify Vote
+                </a>
+
+                <a
+                    href="how-it-works.html"
+                    class="nav-link active"
+                    aria-current="page"
+                >
+                    How It Works
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-button"
+                >
+                    Enter Election
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main id="main-content">
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="page-hero how-it-works-hero">
+
+            <div class="container">
+
+                <div class="page-hero-content">
+
+                    <div class="live-status-badge">
+
+                        <span
+                            class="status-dot"
+                            aria-hidden="true"
+                        ></span>
+
+                        <span>
+                            Transparent Election Technology
+                        </span>
+
+                    </div>
+
+
+                    <p class="eyebrow">
+                        HOW ALU-ELECT WORKS
+                    </p>
+
+
+                    <h1>
+                        Built to make your vote
+                        <span>verifiable.</span>
+                    </h1>
+
+
+                    <p>
+                        ALU-ELECT combines secure authentication,
+                        ballot privacy, cryptography, audit records
+                        and blockchain-backed integrity mechanisms to
+                        create an election students can understand
+                        and trust.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="election.html"
+                            class="button button-primary button-large"
+                        >
+                            Enter Election
+                        </a>
+
+                        <a
+                            href="verify.html"
+                            class="button button-secondary button-large"
+                        >
+                            Verify a Vote
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SIMPLE OVERVIEW
+        ====================================================== -->
+
+        <section class="system-overview-section section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        THE BIG PICTURE
+                    </span>
+
+                    <h2>
+                        From login to verified election
+                    </h2>
+
+                    <p>
+                        Every stage has a specific purpose. Identity
+                        is used to establish eligibility, while the
+                        voting process is designed to protect ballot
+                        secrecy.
+                    </p>
+
+                </div>
+
+
+                <div class="process-flow">
+
+
+                    <div class="process-flow-item">
+
+                        <span class="process-number">
+                            01
+                        </span>
+
+                        <div
+                            class="process-icon"
+                            aria-hidden="true"
+                        >
+                            🔐
+                        </div>
+
+                        <h3>
+                            Authenticate
+                        </h3>
+
+                        <p>
+                            Confirm that the voter is an eligible
+                            student.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-connector"
+                        aria-hidden="true">
+                    </div>
+
+
+                    <div class="process-flow-item">
+
+                        <span class="process-number">
+                            02
+                        </span>
+
+                        <div
+                            class="process-icon"
+                            aria-hidden="true"
+                        >
+                            ✓
+                        </div>
+
+                        <h3>
+                            Check Eligibility
+                        </h3>
+
+                        <p>
+                            Confirm that the student is permitted to
+                            participate.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-connector"
+                        aria-hidden="true">
+                    </div>
+
+
+                    <div class="process-flow-item">
+
+                        <span class="process-number">
+                            03
+                        </span>
+
+                        <div
+                            class="process-icon"
+                            aria-hidden="true"
+                        >
+                            🗳
+                        </div>
+
+                        <h3>
+                            Cast Ballot
+                        </h3>
+
+                        <p>
+                            Make selections privately through the
+                            protected ballot interface.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-connector"
+                        aria-hidden="true">
+                    </div>
+
+
+                    <div class="process-flow-item">
+
+                        <span class="process-number">
+                            04
+                        </span>
+
+                        <div
+                            class="process-icon"
+                            aria-hidden="true"
+                        >
+                            🛡
+                        </div>
+
+                        <h3>
+                            Protect
+                        </h3>
+
+                        <p>
+                            Apply cryptographic protection and secure
+                            processing.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-connector"
+                        aria-hidden="true">
+                    </div>
+
+
+                    <div class="process-flow-item">
+
+                        <span class="process-number">
+                            05
+                        </span>
+
+                        <div
+                            class="process-icon"
+                            aria-hidden="true"
+                        >
+                            ⛓
+                        </div>
+
+                        <h3>
+                            Audit
+                        </h3>
+
+                        <p>
+                            Preserve tamper-evident election integrity
+                            records.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DETAILED VOTING PROCESS
+        ====================================================== -->
+
+        <section class="detailed-process-section section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        STEP BY STEP
+                    </span>
+
+                    <h2>
+                        What happens when you vote?
+                    </h2>
+
+                    <p>
+                        The voting experience should be simple for
+                        students even though several security controls
+                        operate behind the scenes.
+                    </p>
+
+                </div>
+
+
+                <div class="detailed-process">
+
+
+                    <!-- STEP 1 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            01
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                IDENTITY
+                            </span>
+
+                            <h3>
+                                You authenticate securely
+                            </h3>
+
+                            <p>
+                                The system verifies the student's
+                                authorized university identity before
+                                allowing access to the ballot.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    University account authentication
+                                </li>
+
+                                <li>
+                                    Eligibility verification
+                                </li>
+
+                                <li>
+                                    Optional multi-factor
+                                    authentication
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 2 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            02
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                ELIGIBILITY
+                            </span>
+
+                            <h3>
+                                The system checks your ballot status
+                            </h3>
+
+                            <p>
+                                ALU-ELECT checks whether you are
+                                eligible for the election and whether
+                                your voting opportunity has already
+                                been used.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Eligible voter check
+                                </li>
+
+                                <li>
+                                    Election participation status
+                                </li>
+
+                                <li>
+                                    Prevention of duplicate voting
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 3 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            03
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                BALLOT
+                            </span>
+
+                            <h3>
+                                You make your choices privately
+                            </h3>
+
+                            <p>
+                                The ballot interface presents the
+                                available positions and candidates.
+                                Students select their preferred
+                                candidates before reviewing the ballot.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    One controlled ballot per eligible
+                                    voter
+                                </li>
+
+                                <li>
+                                    Clear candidate information
+                                </li>
+
+                                <li>
+                                    Review before submission
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 4 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            04
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                PRIVACY
+                            </span>
+
+                            <h3>
+                                Your ballot is separated from your
+                                identity
+                            </h3>
+
+                            <p>
+                                The architecture should separate voter
+                                eligibility information from the secret
+                                ballot record so that verification does
+                                not reveal who a voter selected.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Identity and ballot separation
+                                </li>
+
+                                <li>
+                                    Protected ballot data
+                                </li>
+
+                                <li>
+                                    No public display of individual
+                                    selections
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 5 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            05
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                CRYPTOGRAPHY
+                            </span>
+
+                            <h3>
+                                The vote receives cryptographic
+                                protection
+                            </h3>
+
+                            <p>
+                                Cryptographic techniques can be used to
+                                protect ballot information and create
+                                verifiable commitments to election
+                                records.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Encryption
+                                </li>
+
+                                <li>
+                                    Hashing
+                                </li>
+
+                                <li>
+                                    Digital signatures where required
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 6 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            06
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                RECORDING
+                            </span>
+
+                            <h3>
+                                The ballot is recorded
+                            </h3>
+
+                            <p>
+                                The protected vote is recorded by the
+                                election system and the relevant
+                                election state is updated.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Transaction validation
+                                </li>
+
+                                <li>
+                                    Secure database storage
+                                </li>
+
+                                <li>
+                                    Election-state updates
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 7 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            07
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                BLOCKCHAIN
+                            </span>
+
+                            <h3>
+                                Election integrity is anchored
+                            </h3>
+
+                            <p>
+                                Important election events or
+                                cryptographic commitments can be
+                                anchored to a permissioned blockchain
+                                or distributed ledger operated by
+                                authorized election participants.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Tamper-evident records
+                                </li>
+
+                                <li>
+                                    Distributed verification
+                                </li>
+
+                                <li>
+                                    Controlled network membership
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 8 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            08
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                RECEIPT
+                            </span>
+
+                            <h3>
+                                You receive a verification reference
+                            </h3>
+
+                            <p>
+                                After successful submission, the
+                                student receives a reference that can
+                                later be used to verify that the ballot
+                                record exists.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Unique verification reference
+                                </li>
+
+                                <li>
+                                    Record status
+                                </li>
+
+                                <li>
+                                    No candidate selection revealed
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 9 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            09
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                LIVE ELECTION
+                            </span>
+
+                            <h3>
+                                Results update during the election
+                            </h3>
+
+                            <p>
+                                Where permitted by the university's
+                                election rules, provisional statistics
+                                and candidate totals can be displayed
+                                through the live results dashboard.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Candidate vote totals
+                                </li>
+
+                                <li>
+                                    Percentages and race leads
+                                </li>
+
+                                <li>
+                                    Turnout statistics
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- STEP 10 -->
+
+                    <article class="process-detail-card">
+
+                        <div class="process-detail-number">
+                            10
+                        </div>
+
+                        <div class="process-detail-content">
+
+                            <span class="process-detail-label">
+                                CERTIFICATION
+                            </span>
+
+                            <h3>
+                                Final results are audited and certified
+                            </h3>
+
+                            <p>
+                                Once voting closes, authorized election
+                                officials can perform the final
+                                reconciliation, review audit records
+                                and certify the official results.
+                            </p>
+
+                            <ul>
+
+                                <li>
+                                    Final vote reconciliation
+                                </li>
+
+                                <li>
+                                    Audit review
+                                </li>
+
+                                <li>
+                                    Official certification
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BLOCKCHAIN EXPLANATION
+        ====================================================== -->
+
+        <section class="blockchain-section section">
+
+            <div class="container">
+
+                <div class="blockchain-layout">
+
+
+                    <div class="blockchain-content">
+
+                        <span class="eyebrow">
+                            BLOCKCHAIN & ELECTION INTEGRITY
+                        </span>
+
+                        <h2>
+                            Why use blockchain?
+                        </h2>
+
+                        <p>
+                            Blockchain is not being used simply because
+                            it sounds advanced. Its purpose is to help
+                            create an independently checkable,
+                            tamper-evident history of important election
+                            records.
+                        </p>
+
+                        <p>
+                            ALU-ELECT should use a permissioned
+                            blockchain architecture rather than putting
+                            private student information or raw ballots
+                            onto a public blockchain.
+                        </p>
+
+
+                        <div class="blockchain-points">
+
+                            <div class="blockchain-point">
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Tamper evidence
+                                    </h3>
+
+                                    <p>
+                                        Unauthorized changes to
+                                        anchored records can become
+                                        detectable.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="blockchain-point">
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Shared verification
+                                    </h3>
+
+                                    <p>
+                                        Authorized participating
+                                        institutions or election
+                                        authorities can independently
+                                        validate ledger information.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="blockchain-point">
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <h3>
+                                        Auditability
+                                    </h3>
+
+                                    <p>
+                                        Important election events can
+                                        have a stronger, verifiable
+                                        audit trail.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="blockchain-visual">
+
+                        <div class="ledger-card">
+
+                            <div class="ledger-header">
+
+                                <span>
+                                    ELECTION LEDGER
+                                </span>
+
+                                <span class="ledger-status">
+                                    VERIFIED
+                                </span>
+
+                            </div>
+
+
+                            <div class="ledger-block">
+
+                                <span class="block-label">
+                                    BLOCK 001
+                                </span>
+
+                                <strong>
+                                    Election Created
+                                </strong>
+
+                                <small>
+                                    Cryptographic commitment recorded
+                                </small>
+
+                            </div>
+
+
+                            <div
+                                class="ledger-line"
+                                aria-hidden="true"
+                            ></div>
+
+
+                            <div class="ledger-block">
+
+                                <span class="block-label">
+                                    BLOCK 002
+                                </span>
+
+                                <strong>
+                                    Voting Opened
+                                </strong>
+
+                                <small>
+                                    Election state anchored
+                                </small>
+
+                            </div>
+
+
+                            <div
+                                class="ledger-line"
+                                aria-hidden="true"
+                            ></div>
+
+
+                            <div class="ledger-block">
+
+                                <span class="block-label">
+                                    BLOCK 003
+                                </span>
+
+                                <strong>
+                                    Ballot Records
+                                </strong>
+
+                                <small>
+                                    Protected election commitments
+                                </small>
+
+                            </div>
+
+
+                            <div
+                                class="ledger-line"
+                                aria-hidden="true"
+                            ></div>
+
+
+                            <div class="ledger-block">
+
+                                <span class="block-label">
+                                    BLOCK 004
+                                </span>
+
+                                <strong>
+                                    Results Finalized
+                                </strong>
+
+                                <small>
+                                    Final election state committed
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WHAT BLOCKCHAIN DOES NOT DO
+        ====================================================== -->
+
+        <section class="blockchain-limitations-section section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        IMPORTANT DISTINCTION
+                    </span>
+
+                    <h2>
+                        Blockchain is one security layer,
+                        not the entire system.
+                    </h2>
+
+                    <p>
+                        A trustworthy election requires multiple
+                        controls working together.
+                    </p>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+
+                    <div class="comparison-card positive">
+
+                        <div
+                            class="comparison-icon"
+                            aria-hidden="true"
+                        >
+                            ✓
+                        </div>
+
+                        <h3>
+                            Blockchain can help with
+                        </h3>
+
+                        <ul>
+
+                            <li>
+                                Tamper-evident records
+                            </li>
+
+                            <li>
+                                Distributed auditability
+                            </li>
+
+                            <li>
+                                Cryptographic commitments
+                            </li>
+
+                            <li>
+                                Election-state integrity
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="comparison-card caution">
+
+                        <div
+                            class="comparison-icon"
+                            aria-hidden="true"
+                        >
+                            !
+                        </div>
+
+                        <h3>
+                            Blockchain does not automatically solve
+                        </h3>
+
+                        <ul>
+
+                            <li>
+                                Weak passwords
+                            </li>
+
+                            <li>
+                                Compromised devices
+                            </li>
+
+                            <li>
+                                Poor authentication
+                            </li>
+
+                            <li>
+                                Incorrect election configuration
+                            </li>
+
+                            <li>
+                                Social engineering
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SECURITY LAYERS
+        ====================================================== -->
+
+        <section class="security-layers-section section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        DEFENCE IN DEPTH
+                    </span>
+
+                    <h2>
+                        Multiple layers protect the election
+                    </h2>
+
+                    <p>
+                        ALU-ELECT should not rely on a single security
+                        mechanism. Each layer addresses a different
+                        type of risk.
+                    </p>
+
+                </div>
+
+
+                <div class="security-layer-grid">
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            01
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            🔑
+                        </div>
+
+                        <h3>
+                            Authentication
+                        </h3>
+
+                        <p>
+                            Strong university identity verification
+                            helps prevent unauthorized users from
+                            entering the election.
+                        </p>
+
+                    </article>
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            02
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            🧾
+                        </div>
+
+                        <h3>
+                            Eligibility
+                        </h3>
+
+                        <p>
+                            Election rules determine who can vote and
+                            which positions a voter can participate in.
+                        </p>
+
+                    </article>
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            03
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            🔒
+                        </div>
+
+                        <h3>
+                            Encryption
+                        </h3>
+
+                        <p>
+                            Sensitive information should be protected
+                            while moving through the system and while
+                            stored.
+                        </p>
+
+                    </article>
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            04
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            🗳
+                        </div>
+
+                        <h3>
+                            Ballot Privacy
+                        </h3>
+
+                        <p>
+                            Voter identity and secret ballot information
+                            should be architecturally separated.
+                        </p>
+
+                    </article>
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            05
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            ⛓
+                        </div>
+
+                        <h3>
+                            Distributed Ledger
+                        </h3>
+
+                        <p>
+                            Important election commitments can be
+                            anchored to a permissioned ledger.
+                        </p>
+
+                    </article>
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            06
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            👥
+                        </div>
+
+                        <h3>
+                            Administrative Controls
+                        </h3>
+
+                        <p>
+                            Sensitive election operations should use
+                            role-based access and multi-person
+                            authorization where appropriate.
+                        </p>
+
+                    </article>
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            07
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            📊
+                        </div>
+
+                        <h3>
+                            Monitoring
+                        </h3>
+
+                        <p>
+                            Suspicious activity, system health and
+                            election events can be monitored during the
+                            election.
+                        </p>
+
+                    </article>
+
+
+                    <article class="security-layer-card">
+
+                        <span class="security-layer-number">
+                            08
+                        </span>
+
+                        <div
+                            class="security-layer-icon"
+                            aria-hidden="true"
+                        >
+                            🔎
+                        </div>
+
+                        <h3>
+                            Independent Audit
+                        </h3>
+
+                        <p>
+                            Authorized observers can review appropriate
+                            election evidence before certification.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRIVACY
+        ====================================================== -->
+
+        <section class="privacy-section section">
+
+            <div class="container">
+
+                <div class="privacy-card">
+
+                    <div class="privacy-content">
+
+                        <span class="eyebrow">
+                            BALLOT PRIVACY
+                        </span>
+
+                        <h2>
+                            Transparency should never mean exposing
+                            your vote.
+                        </h2>
+
+                        <p>
+                            Students should be able to verify that their
+                            participation was recorded without allowing
+                            other people to discover their candidate
+                            selections.
+                        </p>
+
+                        <div class="privacy-principles">
+
+                            <div class="privacy-principle">
+
+                                <strong>
+                                    Your identity
+                                </strong>
+
+                                <span>
+                                    Used to establish eligibility.
+                                </span>
+
+                            </div>
+
+
+                            <div class="privacy-principle">
+
+                                <strong>
+                                    Your ballot
+                                </strong>
+
+                                <span>
+                                    Protected as secret election data.
+                                </span>
+
+                            </div>
+
+
+                            <div class="privacy-principle">
+
+                                <strong>
+                                    Your receipt
+                                </strong>
+
+                                <span>
+                                    Used to verify that your record
+                                    exists.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="privacy-visual">
+
+                        <div class="privacy-shield">
+
+                            <div
+                                class="shield-symbol"
+                                aria-hidden="true"
+                            >
+                                🔒
+                            </div>
+
+                            <strong>
+                                BALLOT PRIVATE
+                            </strong>
+
+                            <span>
+                                Identity ≠ Candidate Choice
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LIVE RESULTS
+        ====================================================== -->
+
+        <section class="live-results-explanation section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        ELECTION TRANSPARENCY
+                    </span>
+
+                    <h2>
+                        Follow the election as it happens
+                    </h2>
+
+                    <p>
+                        The live dashboard can present provisional
+                        election statistics, race comparisons and
+                        turnout information throughout the voting
+                        period, subject to the university's approved
+                        election rules.
+                    </p>
+
+                </div>
+
+
+                <div class="results-feature-grid">
+
+
+                    <div class="results-feature-card">
+
+                        <span
+                            class="results-feature-icon"
+                            aria-hidden="true"
+                        >
+                            📊
+                        </span>
+
+                        <h3>
+                            Vote totals
+                        </h3>
+
+                        <p>
+                            See current provisional vote totals for
+                            each candidate and position.
+                        </p>
+
+                    </div>
+
+
+                    <div class="results-feature-card">
+
+                        <span
+                            class="results-feature-icon"
+                            aria-hidden="true"
+                        >
+                            📈
+                        </span>
+
+                        <h3>
+                            Race tracker
+                        </h3>
+
+                        <p>
+                            Compare candidate percentages, leads and
+                            changes throughout the election.
+                        </p>
+
+                    </div>
+
+
+                    <div class="results-feature-card">
+
+                        <span
+                            class="results-feature-icon"
+                            aria-hidden="true"
+                        >
+                            👥
+                        </span>
+
+                        <h3>
+                            Turnout
+                        </h3>
+
+                        <p>
+                            Monitor participation by eligible voter
+                            groups and approved election categories.
+                        </p>
+
+                    </div>
+
+
+                    <div class="results-feature-card">
+
+                        <span
+                            class="results-feature-icon"
+                            aria-hidden="true"
+                        >
+                            🔴
+                        </span>
+
+                        <h3>
+                            Live status
+                        </h3>
+
+                        <p>
+                            Know whether voting is open, closing or
+                            officially finalized.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="centered-action">
+
+                    <a
+                        href="results.html"
+                        class="button button-primary button-large"
+                    >
+                        View Live Results
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VERIFICATION
+        ====================================================== -->
+
+        <section class="verification-explanation section">
+
+            <div class="container">
+
+                <div class="verification-explanation-card">
+
+                    <div class="verification-explanation-content">
+
+                        <span class="eyebrow">
+                            AFTER YOU VOTE
+                        </span>
+
+                        <h2>
+                            Verify your participation.
+                        </h2>
+
+                        <p>
+                            Your verification reference allows you to
+                            check whether your protected ballot record
+                            exists without revealing your candidate
+                            choices.
+                        </p>
+
+                        <a
+                            href="verify.html"
+                            class="button button-primary"
+                        >
+                            Verify My Vote
+                        </a>
+
+                    </div>
+
+
+                    <div class="verification-example">
+
+                        <div class="receipt-card">
+
+                            <div class="receipt-top">
+
+                                <span>
+                                    ALU-ELECT
+                                </span>
+
+                                <span>
+                                    VERIFIED
+                                </span>
+
+                            </div>
+
+
+                            <div class="receipt-check"
+                                aria-hidden="true">
+                                ✓
+                            </div>
+
+
+                            <strong>
+                                Ballot Recorded
+                            </strong>
+
+
+                            <span class="receipt-label">
+                                Verification Reference
+                            </span>
+
+
+                            <code>
+                                ALU-XXXX-XXXX
+                            </code>
+
+
+                            <small>
+                                Candidate selections remain private.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TRUST PRINCIPLES
+        ====================================================== -->
+
+        <section class="trust-principles-section section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        THE ALU-ELECT PROMISE
+                    </span>
+
+                    <h2>
+                        Designed around trust.
+                    </h2>
+
+                </div>
+
+
+                <div class="trust-principles-grid">
+
+
+                    <article class="trust-principle">
+
+                        <div
+                            class="trust-icon"
+                            aria-hidden="true"
+                        >
+                            🔐
+                        </div>
+
+                        <h3>
+                            Secure
+                        </h3>
+
+                        <p>
+                            Multiple security layers work together
+                            instead of relying on one technology.
+                        </p>
+
+                    </article>
+
+
+                    <article class="trust-principle">
+
+                        <div
+                            class="trust-icon"
+                            aria-hidden="true"
+                        >
+                            👁
+                        </div>
+
+                        <h3>
+                            Transparent
+                        </h3>
+
+                        <p>
+                            Students can understand the election
+                            process and follow approved live statistics.
+                        </p>
+
+                    </article>
+
+
+                    <article class="trust-principle">
+
+                        <div
+                            class="trust-icon"
+                            aria-hidden="true"
+                        >
+                            🛡
+                        </div>
+
+                        <h3>
+                            Private
+                        </h3>
+
+                        <p>
+                            Election transparency does not require
+                            exposing individual candidate selections.
+                        </p>
+
+                    </article>
+
+
+                    <article class="trust-principle">
+
+                        <div
+                            class="trust-icon"
+                            aria-hidden="true"
+                        >
+                            ✓
+                        </div>
+
+                        <h3>
+                            Verifiable
+                        </h3>
+
+                        <p>
+                            Students and authorized observers can check
+                            appropriate election evidence.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL CTA
+        ====================================================== -->
+
+        <section class="cta-section section">
+
+            <div class="container cta-container">
+
+                <div class="cta-content">
+
+                    <span class="eyebrow">
+                        READY?
+                    </span>
+
+                    <h2>
+                        Your vote. Your voice. Verifiable.
+                    </h2>
+
+                    <p>
+                        Enter the election, review the candidates and
+                        participate in the future of student leadership.
+                    </p>
+
+                </div>
+
+
+                <div class="cta-actions">
+
+                    <a
+                        href="election.html"
+                        class="button button-primary button-large"
+                    >
+                        Enter Election
+                    </a>
+
+                    <a
+                        href="candidates.html"
+                        class="button button-secondary button-large"
+                    >
+                        View Candidates
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand footer-logo"
+                >
+
+                    <div
+                        class="brand-mark"
+                        aria-hidden="true"
+                    >
+                        AE
+                    </div>
+
+                    <div class="brand-text">
+
+                        <span class="brand-name">
+                            ALU-ELECT
+                        </span>
+
+                        <span class="brand-tagline">
+                            Your Vote. Your Voice. Verifiable.
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <p>
+                    Secure, transparent and verifiable student
+                    election technology.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Election
+                </h3>
+
+                <a href="election.html">
+                    Vote
+                </a>
+
+                <a href="candidates.html">
+                    Candidates
+                </a>
+
+                <a href="results.html">
+                    Live Results
+                </a>
+
+                <a href="verify.html">
+                    Verify Vote
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Information
+                </h3>
+
+                <a href="how-it-works.html">
+                    How It Works
+                </a>
+
+                <a href="results.html">
+                    Election Statistics
+                </a>
+
+                <a href="verify.html">
+                    Election Verification
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Security
+                </h3>
+
+                <span>
+                    Protected Voting
+                </span>
+
+                <span>
+                    Tamper-Evident Records
+                </span>
+
+                <span>
+                    Audit-Ready Election
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="currentYear">2026</span>
+                ALU-ELECT. All rights reserved.
+            </p>
+
+            <p>
+                Your Vote. Your Voice. Verifiable.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         Functionality will be implemented during the JS phase.
+    ========================================================== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

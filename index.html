@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="ALU-ELECT — A secure, transparent and verifiable student election platform for Alupe University."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1f3a"
+    >
+
+    <title>ALU-ELECT | Your Vote. Your Voice. Verifiable.</title>
+
+    <!-- Main stylesheet — CSS will be created later -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         ACCESSIBILITY
+    ========================================================== -->
+
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Skip to main content
+    </a>
+
+
+    <!-- =========================================================
+         HEADER / NAVIGATION
+    ========================================================== -->
+
+    <header class="site-header" id="siteHeader">
+
+        <div class="container nav-container">
+
+            <!-- Brand -->
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="ALU-ELECT Home"
+            >
+
+                <div class="brand-mark" aria-hidden="true">
+                    AE
+                </div>
+
+                <div class="brand-text">
+                    <span class="brand-name">ALU-ELECT</span>
+                    <span class="brand-tagline">
+                        Your Vote. Your Voice. Verifiable.
+                    </span>
+                </div>
+
+            </a>
+
+
+            <!-- Mobile menu button -->
+            <button
+                class="mobile-menu-toggle"
+                id="mobileMenuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+
+            <!-- Navigation -->
+            <nav
+                class="main-navigation"
+                id="mainNavigation"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link active"
+                    aria-current="page"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-link"
+                >
+                    Election
+                </a>
+
+                <a
+                    href="candidates.html"
+                    class="nav-link"
+                >
+                    Candidates
+                </a>
+
+                <a
+                    href="results.html"
+                    class="nav-link"
+                >
+                    Live Results
+                </a>
+
+                <a
+                    href="verify.html"
+                    class="nav-link"
+                >
+                    Verify Vote
+                </a>
+
+                <a
+                    href="how-it-works.html"
+                    class="nav-link"
+                >
+                    How It Works
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-button"
+                >
+                    Enter Election
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <main id="main-content">
+
+
+        <!-- =====================================================
+             HERO SECTION
+        ====================================================== -->
+
+        <section
+            class="hero-section"
+            id="hero"
+        >
+
+            <div class="container hero-grid">
+
+
+                <!-- Hero content -->
+                <div class="hero-content">
+
+                    <div class="live-status-badge">
+
+                        <span
+                            class="status-dot"
+                            aria-hidden="true"
+                        ></span>
+
+                        <span>Election System Online</span>
+
+                    </div>
+
+
+                    <p class="eyebrow">
+                        ALUPE UNIVERSITY STUDENT ELECTIONS
+                    </p>
+
+
+                    <h1 class="hero-title">
+                        Your Vote.
+                        <span>Your Voice.</span>
+                        Verifiable.
+                    </h1>
+
+
+                    <p class="hero-description">
+                        A modern student election platform designed to
+                        make voting secure, transparent, accessible and
+                        independently verifiable.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="election.html"
+                            class="button button-primary"
+                        >
+                            Enter Election
+                        </a>
+
+                        <a
+                            href="results.html"
+                            class="button button-secondary"
+                        >
+                            View Live Results
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-trust-row">
+
+                        <div class="trust-item">
+
+                            <span
+                                class="trust-icon"
+                                aria-hidden="true"
+                            >
+                                ✓
+                            </span>
+
+                            <span>
+                                Secure Voting
+                            </span>
+
+                        </div>
+
+
+                        <div class="trust-item">
+
+                            <span
+                                class="trust-icon"
+                                aria-hidden="true"
+                            >
+                                ✓
+                            </span>
+
+                            <span>
+                                Verifiable
+                            </span>
+
+                        </div>
+
+
+                        <div class="trust-item">
+
+                            <span
+                                class="trust-icon"
+                                aria-hidden="true"
+                            >
+                                ✓
+                            </span>
+
+                            <span>
+                                Auditable
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ELECTION STATUS CARD
+                ================================================== -->
+
+                <div class="hero-election-card">
+
+                    <div class="election-card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                CURRENT ELECTION
+                            </span>
+
+                            <h2>
+                                ALU Student Elections
+                            </h2>
+
+                        </div>
+
+                        <span class="live-pill">
+                            <span
+                                class="status-dot"
+                                aria-hidden="true"
+                            ></span>
+
+                            LIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="election-card-body">
+
+                        <div class="election-stat">
+
+                            <span class="stat-label">
+                                Election Status
+                            </span>
+
+                            <strong id="homeElectionStatus">
+                                Voting Open
+                            </strong>
+
+                        </div>
+
+
+                        <div class="election-stat">
+
+                            <span class="stat-label">
+                                Turnout
+                            </span>
+
+                            <strong id="homeTurnout">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="election-stat">
+
+                            <span class="stat-label">
+                                Votes Cast
+                            </span>
+
+                            <strong id="homeVotesCast">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="election-stat">
+
+                            <span class="stat-label">
+                                Positions
+                            </span>
+
+                            <strong id="homePositions">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="election-progress">
+
+                        <div class="progress-header">
+
+                            <span>
+                                Election participation
+                            </span>
+
+                            <span id="homeProgressText">
+                                Live
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="progress-track"
+                            role="progressbar"
+                            aria-label="Election turnout"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="0"
+                        >
+
+                            <div
+                                class="progress-bar"
+                                id="homeProgressBar"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="election-card-footer">
+
+                        <span>
+                            Results update as votes are recorded.
+                        </span>
+
+                        <a href="results.html">
+                            See results →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TRUST / FEATURE STRIP
+        ====================================================== -->
+
+        <section
+            class="trust-section"
+            aria-label="Platform features"
+        >
+
+            <div class="container trust-grid">
+
+
+                <article class="trust-card">
+
+                    <div
+                        class="feature-icon"
+                        aria-hidden="true"
+                    >
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Secure
+                        </h3>
+
+                        <p>
+                            Multiple security layers protect voter
+                            authentication and election operations.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="trust-card">
+
+                    <div
+                        class="feature-icon"
+                        aria-hidden="true"
+                    >
+                        ⛓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Verifiable
+                        </h3>
+
+                        <p>
+                            Election records can be independently
+                            checked against cryptographic proofs.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="trust-card">
+
+                    <div
+                        class="feature-icon"
+                        aria-hidden="true"
+                    >
+                        📊
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Transparent
+                        </h3>
+
+                        <p>
+                            Live statistics make election progress
+                            easy to understand.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="trust-card">
+
+                    <div
+                        class="feature-icon"
+                        aria-hidden="true"
+                    >
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Auditable
+                        </h3>
+
+                        <p>
+                            Important election events are protected by
+                            tamper-evident audit records.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WHY ALU-ELECT
+        ====================================================== -->
+
+        <section
+            class="features-section section"
+            id="features"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="eyebrow">
+                        BUILT FOR TRUST
+                    </span>
+
+                    <h2>
+                        A better way to run student elections.
+                    </h2>
+
+                    <p>
+                        ALU-ELECT combines a simple voting experience
+                        with modern security, transparent reporting
+                        and verifiable election records.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Verified Voters
+                        </h3>
+
+                        <p>
+                            Voters are authenticated and checked against
+                            election eligibility requirements before
+                            accessing the ballot.
+                        </p>
+
+                        <a
+                            href="how-it-works.html"
+                            class="text-link"
+                        >
+                            Learn how verification works →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Private Ballots
+                        </h3>
+
+                        <p>
+                            Voter identity and ballot choices are
+                            designed to remain separated so that
+                            individual choices are not publicly exposed.
+                        </p>
+
+                        <a
+                            href="how-it-works.html"
+                            class="text-link"
+                        >
+                            Understand ballot privacy →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Tamper-Evident Records
+                        </h3>
+
+                        <p>
+                            Cryptographic records help detect
+                            unauthorized changes to important election
+                            events and results.
+                        </p>
+
+                        <a
+                            href="verify.html"
+                            class="text-link"
+                        >
+                            Explore verification →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Live Election Intelligence
+                        </h3>
+
+                        <p>
+                            Follow turnout, candidate performance,
+                            position-by-position races and election
+                            activity through clear visual statistics.
+                        </p>
+
+                        <a
+                            href="results.html"
+                            class="text-link"
+                        >
+                            View live results →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            05
+                        </div>
+
+                        <h3>
+                            Election Receipts
+                        </h3>
+
+                        <p>
+                            After voting, voters can receive a
+                            verification reference that can be checked
+                            without revealing their ballot choice.
+                        </p>
+
+                        <a
+                            href="verify.html"
+                            class="text-link"
+                        >
+                            Verify a vote →
+                        </a>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            06
+                        </div>
+
+                        <h3>
+                            Independent Audit Trail
+                        </h3>
+
+                        <p>
+                            Critical election actions can be recorded
+                            in a protected audit trail for later review
+                            by authorized election officials.
+                        </p>
+
+                        <a
+                            href="how-it-works.html"
+                            class="text-link"
+                        >
+                            See how it works →
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             HOW IT WORKS PREVIEW
+        ====================================================== -->
+
+        <section
+            class="process-section section"
+            id="process"
+        >
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        SIMPLE FOR STUDENTS
+                    </span>
+
+                    <h2>
+                        From verification to verification.
+                    </h2>
+
+                    <p>
+                        The voting process is designed to be easy to
+                        understand while maintaining strong election
+                        controls behind the scenes.
+                    </p>
+
+                </div>
+
+
+                <div class="process-grid">
+
+
+                    <article class="process-card">
+
+                        <span class="process-step">
+                            01
+                        </span>
+
+                        <h3>
+                            Verify
+                        </h3>
+
+                        <p>
+                            Authenticate yourself and confirm that you
+                            are eligible to participate.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-card">
+
+                        <span class="process-step">
+                            02
+                        </span>
+
+                        <h3>
+                            Vote
+                        </h3>
+
+                        <p>
+                            Review candidates and make your selections
+                            privately for each available position.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-card">
+
+                        <span class="process-step">
+                            03
+                        </span>
+
+                        <h3>
+                            Confirm
+                        </h3>
+
+                        <p>
+                            Review your selections before securely
+                            submitting your ballot.
+                        </p>
+
+                    </article>
+
+
+                    <article class="process-card">
+
+                        <span class="process-step">
+                            04
+                        </span>
+
+                        <h3>
+                            Verify
+                        </h3>
+
+                        <p>
+                            Receive a verification reference and use it
+                            to confirm that your vote was recorded.
+                        </p>
+
+                    </article>
+
+                </div>
+
+
+                <div class="section-action">
+
+                    <a
+                        href="how-it-works.html"
+                        class="button button-secondary"
+                    >
+                        Explore the Full Process
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LIVE RESULTS PREVIEW
+        ====================================================== -->
+
+        <section
+            class="results-preview-section section"
+            id="live-results"
+        >
+
+            <div class="container results-preview-grid">
+
+
+                <div class="results-preview-content">
+
+                    <span class="eyebrow">
+                        LIVE ELECTION INTELLIGENCE
+                    </span>
+
+                    <h2>
+                        Follow every race as the election progresses.
+                    </h2>
+
+                    <p>
+                        See turnout, vote totals, candidate standings
+                        and position-by-position race information from
+                        one clear dashboard.
+                    </p>
+
+
+                    <ul class="check-list">
+
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Current leader for every position
+                        </li>
+
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Exact vote counts and percentages
+                        </li>
+
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Turnout statistics
+                        </li>
+
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Election activity trends
+                        </li>
+
+                        <li>
+                            <span aria-hidden="true">✓</span>
+                            Final certified results
+                        </li>
+
+                    </ul>
+
+
+                    <a
+                        href="results.html"
+                        class="button button-primary"
+                    >
+                        Open Live Results
+                    </a>
+
+                </div>
+
+
+                <!-- Results visual preview -->
+                <div class="results-preview-card">
+
+                    <div class="preview-card-header">
+
+                        <div>
+
+                            <span>
+                                LIVE RACE
+                            </span>
+
+                            <h3>
+                                Student Council President
+                            </h3>
+
+                        </div>
+
+                        <span class="live-pill">
+                            LIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="candidate-result-preview">
+
+                        <div class="candidate-result-top">
+
+                            <span>
+                                Candidate A
+                            </span>
+
+                            <strong>
+                                0 votes
+                            </strong>
+
+                        </div>
+
+                        <div class="result-bar">
+
+                            <div
+                                class="result-bar-fill"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                        <span class="result-percentage">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="candidate-result-preview">
+
+                        <div class="candidate-result-top">
+
+                            <span>
+                                Candidate B
+                            </span>
+
+                            <strong>
+                                0 votes
+                            </strong>
+
+                        </div>
+
+                        <div class="result-bar">
+
+                            <div
+                                class="result-bar-fill"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                        <span class="result-percentage">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="candidate-result-preview">
+
+                        <div class="candidate-result-top">
+
+                            <span>
+                                Candidate C
+                            </span>
+
+                            <strong>
+                                0 votes
+                            </strong>
+
+                        </div>
+
+                        <div class="result-bar">
+
+                            <div
+                                class="result-bar-fill"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                        <span class="result-percentage">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="preview-card-footer">
+
+                        <span>
+                            Updates automatically
+                        </span>
+
+                        <span>
+                            ● Secure feed
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VERIFICATION SECTION
+        ====================================================== -->
+
+        <section
+            class="verification-section section"
+            id="verification"
+        >
+
+            <div class="container verification-card">
+
+                <div class="verification-content">
+
+                    <span class="eyebrow">
+                        ELECTION VERIFICATION
+                    </span>
+
+                    <h2>
+                        Don't just trust the result.
+                        Verify it.
+                    </h2>
+
+                    <p>
+                        ALU-ELECT is designed so that important election
+                        records can be checked using cryptographic
+                        evidence and a protected audit trail.
+                    </p>
+
+                    <a
+                        href="verify.html"
+                        class="button button-primary"
+                    >
+                        Verify Election
+                    </a>
+
+                </div>
+
+
+                <div class="verification-points">
+
+                    <div class="verification-point">
+
+                        <span aria-hidden="true">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Vote receipt
+                            </strong>
+
+                            <p>
+                                Check that your ballot was recorded.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-point">
+
+                        <span aria-hidden="true">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Election proof
+                            </strong>
+
+                            <p>
+                                Review protected election records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-point">
+
+                        <span aria-hidden="true">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Audit trail
+                            </strong>
+
+                            <p>
+                                Review important election events.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL CTA
+        ====================================================== -->
+
+        <section
+            class="cta-section section"
+            id="enter-election"
+        >
+
+            <div class="container cta-container">
+
+                <div class="cta-content">
+
+                    <span class="eyebrow">
+                        READY TO PARTICIPATE?
+                    </span>
+
+                    <h2>
+                        Your vote matters.
+                    </h2>
+
+                    <p>
+                        Enter the election, review the candidates and
+                        make your voice count.
+                    </p>
+
+                </div>
+
+
+                <div class="cta-actions">
+
+                    <a
+                        href="election.html"
+                        class="button button-primary button-large"
+                    >
+                        Enter Election
+                    </a>
+
+                    <a
+                        href="candidates.html"
+                        class="button button-secondary button-large"
+                    >
+                        Meet the Candidates
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+
+            <!-- Footer brand -->
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand footer-logo"
+                >
+
+                    <div class="brand-mark" aria-hidden="true">
+                        AE
+                    </div>
+
+                    <div class="brand-text">
+
+                        <span class="brand-name">
+                            ALU-ELECT
+                        </span>
+
+                        <span class="brand-tagline">
+                            Your Vote. Your Voice. Verifiable.
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <p>
+                    A modern student election platform focused on
+                    secure voting, transparency and verifiability.
+                </p>
+
+            </div>
+
+
+            <!-- Election links -->
+            <div class="footer-column">
+
+                <h3>
+                    Election
+                </h3>
+
+                <a href="election.html">
+                    Vote
+                </a>
+
+                <a href="candidates.html">
+                    Candidates
+                </a>
+
+                <a href="results.html">
+                    Live Results
+                </a>
+
+                <a href="verify.html">
+                    Verify Vote
+                </a>
+
+            </div>
+
+
+            <!-- Information -->
+            <div class="footer-column">
+
+                <h3>
+                    Information
+                </h3>
+
+                <a href="how-it-works.html">
+                    How It Works
+                </a>
+
+                <a href="results.html">
+                    Election Statistics
+                </a>
+
+                <a href="verify.html">
+                    Election Verification
+                </a>
+
+            </div>
+
+
+            <!-- System -->
+            <div class="footer-column">
+
+                <h3>
+                    System
+                </h3>
+
+                <span class="system-status">
+
+                    <span
+                        class="status-dot"
+                        aria-hidden="true"
+                    ></span>
+
+                    System Online
+
+                </span>
+
+                <span>
+                    Secure Election Infrastructure
+                </span>
+
+                <span>
+                    Audit-ready Records
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="currentYear">2026</span>
+                ALU-ELECT. All rights reserved.
+            </p>
+
+            <p>
+                Election technology for Alupe University.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         Functionality will be implemented later.
+    ========================================================== -->
+
+    <script src="js/app.js"></script>
+    <script src="js/home.js"></script>
+
+</body>
+</html>

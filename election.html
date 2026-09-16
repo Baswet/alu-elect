@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="ALU-ELECT secure student voting portal for Alupe University."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1f3a"
+    >
+
+    <title>Vote | ALU-ELECT</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/election.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         ACCESSIBILITY
+    ========================================================== -->
+
+    <a
+        class="skip-link"
+        href="#main-content"
+    >
+        Skip to voting area
+    </a>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="site-header" id="siteHeader">
+
+        <div class="container nav-container">
+
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="ALU-ELECT Home"
+            >
+
+                <div
+                    class="brand-mark"
+                    aria-hidden="true"
+                >
+                    AE
+                </div>
+
+                <div class="brand-text">
+
+                    <span class="brand-name">
+                        ALU-ELECT
+                    </span>
+
+                    <span class="brand-tagline">
+                        Your Vote. Your Voice. Verifiable.
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <button
+                class="mobile-menu-toggle"
+                id="mobileMenuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+
+            <nav
+                class="main-navigation"
+                id="mainNavigation"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="election.html"
+                    class="nav-link active"
+                    aria-current="page"
+                >
+                    Election
+                </a>
+
+                <a
+                    href="candidates.html"
+                    class="nav-link"
+                >
+                    Candidates
+                </a>
+
+                <a
+                    href="results.html"
+                    class="nav-link"
+                >
+                    Live Results
+                </a>
+
+                <a
+                    href="verify.html"
+                    class="nav-link"
+                >
+                    Verify Vote
+                </a>
+
+                <a
+                    href="how-it-works.html"
+                    class="nav-link"
+                >
+                    How It Works
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main id="main-content">
+
+
+        <!-- =====================================================
+             ELECTION HEADER
+        ====================================================== -->
+
+        <section class="election-hero">
+
+            <div class="container">
+
+                <div class="election-hero-top">
+
+                    <div>
+
+                        <div class="live-status-badge">
+
+                            <span
+                                class="status-dot"
+                                aria-hidden="true"
+                            ></span>
+
+                            <span id="electionStatusText">
+                                VOTING OPEN
+                            </span>
+
+                        </div>
+
+                        <p class="eyebrow">
+                            ALUPE UNIVERSITY STUDENT ELECTIONS
+                        </p>
+
+                        <h1>
+                            Cast Your Vote
+                        </h1>
+
+                        <p class="hero-description">
+                            Review every position and candidate
+                            carefully before submitting your ballot.
+                        </p>
+
+                    </div>
+
+
+                    <div class="election-deadline-card">
+
+                        <span class="card-label">
+                            VOTING DEADLINE
+                        </span>
+
+                        <strong id="votingDeadline">
+                            Loading...
+                        </strong>
+
+                        <span id="countdownText">
+                            Election time remaining
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SECURITY NOTICE
+        ====================================================== -->
+
+        <section class="security-notice-section">
+
+            <div class="container">
+
+                <div
+                    class="security-notice"
+                    role="status"
+                >
+
+                    <div
+                        class="security-notice-icon"
+                        aria-hidden="true"
+                    >
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Your ballot is private.
+                        </strong>
+
+                        <p>
+                            Your identity is verified for eligibility,
+                            while your ballot selections are protected
+                            from public exposure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VOTER CONTEXT
+        ====================================================== -->
+
+        <section class="voter-context-section">
+
+            <div class="container">
+
+                <div class="voter-context-card">
+
+                    <div class="voter-context-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                VOTER STATUS
+                            </span>
+
+                            <h2>
+                                Verified Voter
+                            </h2>
+
+                        </div>
+
+                        <span class="verified-badge">
+
+                            <span aria-hidden="true">
+                                ✓
+                            </span>
+
+                            Verified
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="voter-context-grid">
+
+                        <div class="voter-detail">
+
+                            <span>
+                                School
+                            </span>
+
+                            <strong id="voterSchool">
+                                Loading...
+                            </strong>
+
+                        </div>
+
+
+                        <div class="voter-detail">
+
+                            <span>
+                                Voter ID
+                            </span>
+
+                            <strong id="maskedVoterId">
+                                ••••••••••
+                            </strong>
+
+                        </div>
+
+
+                        <div class="voter-detail">
+
+                            <span>
+                                Eligibility
+                            </span>
+
+                            <strong
+                                class="success-text"
+                                id="voterEligibility"
+                            >
+                                Eligible
+                            </strong>
+
+                        </div>
+
+
+                        <div class="voter-detail">
+
+                            <span>
+                                Ballot Status
+                            </span>
+
+                            <strong id="ballotStatus">
+                                Not Submitted
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             VOTING AREA
+        ====================================================== -->
+
+        <section
+            class="voting-section section"
+            id="votingArea"
+        >
+
+            <div class="container voting-layout">
+
+
+                <!-- =================================================
+                     LEFT: BALLOT
+                ================================================== -->
+
+                <div class="ballot-column">
+
+                    <div class="section-heading">
+
+                        <span class="eyebrow">
+                            YOUR BALLOT
+                        </span>
+
+                        <h2>
+                            Select your candidates
+                        </h2>
+
+                        <p>
+                            Choose one candidate for each position
+                            unless the position instructions specify
+                            otherwise.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         BALLOT PROGRESS
+                    ============================================== -->
+
+                    <div class="ballot-progress-card">
+
+                        <div class="progress-header">
+
+                            <div>
+
+                                <span>
+                                    Ballot completion
+                                </span>
+
+                                <strong id="selectionProgress">
+                                    0 of 0 positions selected
+                                </strong>
+
+                            </div>
+
+                            <span id="selectionPercentage">
+                                0%
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="progress-track"
+                            role="progressbar"
+                            aria-label="Ballot completion"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="0"
+                            id="selectionProgressBarWrapper"
+                        >
+
+                            <div
+                                class="progress-bar"
+                                id="selectionProgressBar"
+                                style="width: 0%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         DYNAMIC POSITIONS
+                    ============================================== -->
+
+                    <div
+                        class="positions-container"
+                        id="positionsContainer"
+                    >
+
+                        <!--
+                            JavaScript will load the real election
+                            positions and candidates here.
+
+                            Example structure that will eventually
+                            be generated:
+
+                            Position
+                              Candidate
+                              Candidate
+                              Candidate
+
+                            Each candidate selection should be
+                            accessible by keyboard and screen readers.
+                        -->
+
+                        <div class="loading-state">
+
+                            <div
+                                class="loading-spinner"
+                                aria-hidden="true"
+                            ></div>
+
+                            <p>
+                                Loading election ballot...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         BALLOT RULES
+                    ============================================== -->
+
+                    <div class="ballot-rules-card">
+
+                        <h3>
+                            Before you submit
+                        </h3>
+
+                        <ul>
+
+                            <li>
+                                Review your candidate selections.
+                            </li>
+
+                            <li>
+                                Make sure every required position
+                                has been completed.
+                            </li>
+
+                            <li>
+                                Your ballot cannot be changed after
+                                final submission.
+                            </li>
+
+                            <li>
+                                Do not share your verification
+                                credentials with another person.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     RIGHT: REVIEW PANEL
+                ================================================== -->
+
+                <aside
+                    class="review-column"
+                    aria-label="Ballot review"
+                >
+
+                    <div
+                        class="review-card"
+                        id="reviewCard"
+                    >
+
+                        <div class="review-card-header">
+
+                            <div>
+
+                                <span class="card-label">
+                                    BALLOT REVIEW
+                                </span>
+
+                                <h2>
+                                    Your selections
+                                </h2>
+
+                            </div>
+
+                            <span
+                                class="review-count"
+                                id="reviewCount"
+                            >
+                                0
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="review-list"
+                            id="reviewList"
+                        >
+
+                            <div class="empty-review">
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ✓
+                                </span>
+
+                                <p>
+                                    Your selections will appear here
+                                    as you complete the ballot.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="review-card-footer">
+
+                            <button
+                                type="button"
+                                class="button button-primary button-full"
+                                id="submitVoteBtn"
+                                disabled
+                            >
+                                Review & Submit Vote
+                            </button>
+
+                            <p class="review-security-note">
+
+                                🔒 Your ballot is encrypted and protected
+                                before submission.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         VERIFICATION CARD
+                    ============================================== -->
+
+                    <div class="side-information-card">
+
+                        <div
+                            class="side-card-icon"
+                            aria-hidden="true"
+                        >
+                            ✓
+                        </div>
+
+                        <h3>
+                            After voting
+                        </h3>
+
+                        <p>
+                            You will receive a verification reference
+                            that can be used to confirm that your ballot
+                            was recorded.
+                        </p>
+
+                        <a href="verify.html">
+                            Learn about verification →
+                        </a>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         HELP CARD
+                    ============================================== -->
+
+                    <div class="side-information-card">
+
+                        <div
+                            class="side-card-icon"
+                            aria-hidden="true"
+                        >
+                            ?
+                        </div>
+
+                        <h3>
+                            Need help?
+                        </h3>
+
+                        <p>
+                            If you are unsure about the voting process,
+                            read the explanation before continuing.
+                        </p>
+
+                        <a href="how-it-works.html">
+                            How voting works →
+                        </a>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONFIRMATION MODAL
+        ====================================================== -->
+
+        <div
+            class="modal"
+            id="confirmationModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="confirmationTitle"
+            aria-hidden="true"
+        >
+
+            <div class="modal-overlay" data-close-modal></div>
+
+            <div class="modal-content">
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeConfirmationModal"
+                    aria-label="Close confirmation window"
+                >
+                    ×
+                </button>
+
+
+                <div class="modal-icon confirmation-icon">
+                    ?
+                </div>
+
+
+                <span class="eyebrow">
+                    FINAL REVIEW
+                </span>
+
+
+                <h2 id="confirmationTitle">
+                    Submit your ballot?
+                </h2>
+
+
+                <p>
+                    Please carefully review your selections below.
+                    Once submitted, your ballot cannot be changed.
+                </p>
+
+
+                <div
+                    class="confirmation-list"
+                    id="confirmationList"
+                >
+                    <!-- Selections inserted by JavaScript -->
+                </div>
+
+
+                <div class="confirmation-warning">
+
+                    <strong>
+                        Important
+                    </strong>
+
+                    <p>
+                        By continuing, you confirm that these are your
+                        final selections.
+                    </p>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        id="cancelConfirmation"
+                    >
+                        Go Back
+                    </button>
+
+                    <button
+                        type="button"
+                        class="button button-primary"
+                        id="confirmVote"
+                    >
+                        Confirm & Submit
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SUCCESS MODAL
+        ====================================================== -->
+
+        <div
+            class="modal"
+            id="successModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="successTitle"
+            aria-hidden="true"
+        >
+
+            <div class="modal-overlay"></div>
+
+            <div class="modal-content success-modal">
+
+                <div class="modal-icon success-icon">
+                    ✓
+                </div>
+
+
+                <span class="eyebrow">
+                    VOTE RECORDED
+                </span>
+
+
+                <h2 id="successTitle">
+                    Your vote has been submitted.
+                </h2>
+
+
+                <p>
+                    Your ballot has been securely recorded. Keep the
+                    verification reference below for your records.
+                </p>
+
+
+                <div class="receipt-card">
+
+                    <span>
+                        VERIFICATION REFERENCE
+                    </span>
+
+                    <strong id="receiptId">
+                        Generating...
+                    </strong>
+
+                    <p>
+                        Do not share this reference if your election
+                        authority instructs you to keep it private.
+                    </p>
+
+                </div>
+
+
+                <div class="success-actions">
+
+                    <a
+                        href="verify.html"
+                        class="button button-primary"
+                    >
+                        Verify My Vote
+                    </a>
+
+                    <a
+                        href="results.html"
+                        class="button button-secondary"
+                    >
+                        View Live Results
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="brand footer-logo"
+                >
+
+                    <div
+                        class="brand-mark"
+                        aria-hidden="true"
+                    >
+                        AE
+                    </div>
+
+                    <div class="brand-text">
+
+                        <span class="brand-name">
+                            ALU-ELECT
+                        </span>
+
+                        <span class="brand-tagline">
+                            Your Vote. Your Voice. Verifiable.
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <p>
+                    Secure, transparent and verifiable student
+                    election technology.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Election
+                </h3>
+
+                <a href="election.html">
+                    Vote
+                </a>
+
+                <a href="candidates.html">
+                    Candidates
+                </a>
+
+                <a href="results.html">
+                    Live Results
+                </a>
+
+                <a href="verify.html">
+                    Verify Vote
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Information
+                </h3>
+
+                <a href="how-it-works.html">
+                    How It Works
+                </a>
+
+                <a href="results.html">
+                    Election Statistics
+                </a>
+
+                <a href="verify.html">
+                    Election Verification
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Security
+                </h3>
+
+                <span>
+                    Protected Voting
+                </span>
+
+                <span>
+                    Tamper-Evident Records
+                </span>
+
+                <span>
+                    Audit-Ready Election
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="currentYear">2026</span>
+                ALU-ELECT. All rights reserved.
+            </p>
+
+            <p>
+                Your Vote. Your Voice. Verifiable.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         Functionality will be implemented later.
+    ========================================================== -->
+
+    <script src="js/app.js"></script>
+    <script src="js/election.js"></script>
+    <script src="js/ballot-context.js"></script>
+
+</body>
+</html>

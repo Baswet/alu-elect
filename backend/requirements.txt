@@ -1,0 +1,8 @@
+Flask>=3.0
+SQLAlchemy>=2.0
+psycopg[binary]>=3.1
+argon2-cffi>=23.1
+python-dotenv>=1.0
+alembic>=1.13
+gunicorn>=21.2
+pytest>=8.0

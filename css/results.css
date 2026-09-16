@@ -1,0 +1,1312 @@
+/* =========================================================
+   ALU-ELECT — LIVE RESULTS
+   File: css/results.css
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   RESULTS HERO
+   --------------------------------------------------------- */
+
+.results-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 4.5rem 0 3rem;
+}
+
+.results-hero::before {
+    content: "";
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    top: -260px;
+    right: -140px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.07);
+    pointer-events: none;
+}
+
+.results-hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    bottom: -200px;
+    left: -130px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.055);
+    pointer-events: none;
+}
+
+.results-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.results-hero-content {
+    max-width: 900px;
+}
+
+.results-status-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+}
+
+.results-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #047857;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.results-live-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+    animation: resultsLivePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes resultsLivePulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.55;
+        transform: scale(0.82);
+    }
+}
+
+.results-update-time,
+.results-connection {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 32px;
+    padding: 0.42rem 0.7rem;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #64748b);
+    font-size: 0.73rem;
+    font-weight: 700;
+}
+
+.results-connection.connected {
+    color: #047857;
+}
+
+.results-connection.connected::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+.results-connection.disconnected {
+    color: #b91c1c;
+}
+
+.results-connection.disconnected::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ef4444;
+}
+
+.results-connection.connecting {
+    color: #b45309;
+}
+
+.results-connection.connecting::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f59e0b;
+}
+
+/* ---------------------------------------------------------
+   PROVISIONAL RESULTS NOTICE
+   --------------------------------------------------------- */
+
+.provisional-results-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin: 0 auto 2rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 18px;
+    background: rgba(255, 251, 235, 0.88);
+}
+
+.provisional-results-icon {
+    flex: 0 0 auto;
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 11px;
+    background: #ffffff;
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.16);
+}
+
+.provisional-results-content {
+    min-width: 0;
+}
+
+.provisional-results-title {
+    margin: 0 0 0.25rem;
+    color: #92400e;
+    font-size: 0.88rem;
+    font-weight: 900;
+}
+
+.provisional-results-notice p {
+    margin: 0;
+    color: #92400e;
+    font-size: 0.76rem;
+    line-height: 1.6;
+}
+
+/* ---------------------------------------------------------
+   RESULTS OVERVIEW
+   --------------------------------------------------------- */
+
+.results-overview {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+}
+
+.results-stat-card {
+    position: relative;
+    overflow: hidden;
+    padding: 1.25rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.04);
+}
+
+.results-stat-card::after {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    right: -35px;
+    bottom: -45px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.results-stat-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.69rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.results-stat-value {
+    display: block;
+    color: var(--text-primary, #0f172a);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1;
+    font-weight: 950;
+}
+
+.results-stat-subtext {
+    display: block;
+    margin-top: 0.45rem;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.72rem;
+}
+
+/* ---------------------------------------------------------
+   RESULTS SECTION HEADER
+   --------------------------------------------------------- */
+
+.results-section {
+    margin-bottom: 2.5rem;
+}
+
+.results-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+}
+
+.results-section-title {
+    margin: 0;
+    color: var(--text-primary, #0f172a);
+    font-size: 1.3rem;
+    font-weight: 950;
+}
+
+.results-section-description {
+    max-width: 650px;
+    margin: 0.35rem 0 0;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+/* ---------------------------------------------------------
+   CURRENT LEADERS
+   --------------------------------------------------------- */
+
+.leaders-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.leader-card {
+    position: relative;
+    overflow: hidden;
+    padding: 1.15rem;
+    border: 1px solid rgba(37, 99, 235, 0.14);
+    border-radius: 20px;
+    background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #f8fbff 100%
+    );
+}
+
+.leader-card.current-leader {
+    border-color: rgba(16, 185, 129, 0.25);
+}
+
+.leader-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+}
+
+.leader-position {
+    color: #2563eb;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.leader-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #047857;
+    font-size: 0.64rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.leader-badge::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+.leader-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.leader-photo {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid #dbeafe;
+    background: #eff6ff;
+}
+
+.leader-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.leader-photo-placeholder {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    color: #2563eb;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.leader-info {
+    min-width: 0;
+}
+
+.leader-name {
+    margin: 0;
+    overflow: hidden;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.9rem;
+    font-weight: 900;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.leader-school {
+    margin-top: 0.2rem;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.7rem;
+}
+
+.leader-votes {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+
+.leader-votes-number {
+    color: var(--text-primary, #0f172a);
+    font-size: 1.65rem;
+    font-weight: 950;
+    line-height: 1;
+}
+
+.leader-votes-label {
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.leader-percentage {
+    margin-top: 0.25rem;
+    color: #2563eb;
+    font-size: 0.74rem;
+    font-weight: 900;
+}
+
+/* ---------------------------------------------------------
+   RACE TRACKER FILTER
+   --------------------------------------------------------- */
+
+.race-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.race-filter {
+    min-width: 220px;
+    padding: 0.72rem 0.85rem;
+    border: 1px solid #dbe3ec;
+    border-radius: 12px;
+    background: #ffffff;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.race-filter:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ---------------------------------------------------------
+   RACE LIST
+   --------------------------------------------------------- */
+
+.race-list {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.race-card {
+    padding: 1.25rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.04);
+}
+
+.race-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.15rem;
+}
+
+.race-title-group {
+    min-width: 0;
+}
+
+.race-position {
+    margin: 0;
+    color: var(--text-primary, #0f172a);
+    font-size: 1rem;
+    font-weight: 950;
+}
+
+.race-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.4rem;
+}
+
+.race-meta-item {
+    color: var(--text-secondary, #64748b);
+    font-size: 0.69rem;
+}
+
+.race-leader {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.42rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.09);
+    color: #047857;
+    font-size: 0.67rem;
+    font-weight: 900;
+}
+
+/* ---------------------------------------------------------
+   CANDIDATE RESULT ROW
+   --------------------------------------------------------- */
+
+.result-candidate {
+    position: relative;
+    padding: 0.9rem 0;
+    border-top: 1px solid #eef2f7;
+}
+
+.result-candidate:first-child {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.result-candidate:last-child {
+    padding-bottom: 0;
+}
+
+.result-candidate-header {
+    display: grid;
+    grid-template-columns: minmax(190px, 1fr) auto auto;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.55rem;
+}
+
+.result-candidate-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
+}
+
+.result-candidate-photo {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.result-candidate-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.result-candidate-photo-placeholder {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 0.75rem;
+    font-weight: 900;
+}
+
+.result-candidate-info {
+    min-width: 0;
+}
+
+.result-candidate-name {
+    margin: 0;
+    overflow: hidden;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.82rem;
+    font-weight: 900;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.result-candidate-school {
+    margin-top: 0.18rem;
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.65rem;
+}
+
+.result-candidate-votes {
+    color: var(--text-primary, #0f172a);
+    font-size: 0.95rem;
+    font-weight: 950;
+    white-space: nowrap;
+}
+
+.result-candidate-percentage {
+    min-width: 52px;
+    color: #2563eb;
+    font-size: 0.76rem;
+    font-weight: 900;
+    text-align: right;
+}
+
+.result-candidate.is-leader {
+    margin: 0 -0.5rem;
+    padding: 0.9rem 0.5rem;
+    border-radius: 14px;
+    background: rgba(16, 185, 129, 0.035);
+}
+
+.result-candidate.is-leader .result-candidate-name {
+    color: #065f46;
+}
+
+.result-candidate.is-leader .result-candidate-votes {
+    color: #047857;
+}
+
+/* ---------------------------------------------------------
+   VOTE BAR
+   --------------------------------------------------------- */
+
+.vote-bar {
+    width: 100%;
+    height: 9px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf2f7;
+}
+
+.vote-bar-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: #2563eb;
+    transition: width 0.5s ease;
+}
+
+.result-candidate.is-leader .vote-bar-fill {
+    background: #10b981;
+}
+
+.result-candidate-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.4rem;
+}
+
+.result-lead {
+    color: #047857;
+    font-size: 0.66rem;
+    font-weight: 900;
+}
+
+.result-candidate-symbol {
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+/* ---------------------------------------------------------
+   RACE SUMMARY
+   --------------------------------------------------------- */
+
+.race-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid #eef2f7;
+}
+
+.race-summary-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.68rem;
+}
+
+.race-summary-item strong {
+    color: var(--text-primary, #0f172a);
+}
+
+/* ---------------------------------------------------------
+   VOTE ACTIVITY / TREND
+   --------------------------------------------------------- */
+
+.results-dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.75fr);
+    gap: 1.25rem;
+}
+
+.results-panel {
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 22px;
+    background: #ffffff;
+}
+
+.results-panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.results-panel-title {
+    margin: 0;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+
+.results-panel-subtitle {
+    margin: 0.25rem 0 0;
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.69rem;
+}
+
+.trend-chart {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+}
+
+#voteTrendChart {
+    width: 100%;
+    min-height: 280px;
+}
+
+.chart-empty {
+    display: grid;
+    min-height: 250px;
+    place-items: center;
+    padding: 1rem;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------
+   SCHOOL TURNOUT
+   --------------------------------------------------------- */
+
+.school-turnout-list {
+    display: grid;
+    gap: 0.95rem;
+}
+
+.school-turnout-item {
+    display: grid;
+    grid-template-columns: minmax(120px, 0.9fr) minmax(120px, 1.6fr) auto;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.school-turnout-name {
+    overflow: hidden;
+    color: var(--text-primary, #334155);
+    font-size: 0.73rem;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.school-turnout-bar {
+    width: 100%;
+    height: 8px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf2f7;
+}
+
+.school-turnout-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: #2563eb;
+    transition: width 0.5s ease;
+}
+
+.school-turnout-value {
+    min-width: 45px;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-align: right;
+}
+
+/* ---------------------------------------------------------
+   LIVE UPDATE INDICATOR
+   --------------------------------------------------------- */
+
+.results-updating {
+    position: relative;
+}
+
+.results-updating::after {
+    content: "";
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.1);
+    animation: resultsUpdatePulse 1s ease-in-out infinite;
+}
+
+@keyframes resultsUpdatePulse {
+    0%,
+    100% {
+        opacity: 0.35;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ---------------------------------------------------------
+   NO RESULTS
+   --------------------------------------------------------- */
+
+.results-empty {
+    display: grid;
+    min-height: 260px;
+    padding: 2rem;
+    place-items: center;
+    border: 1px dashed #cbd5e1;
+    border-radius: 20px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.results-empty-icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 0.9rem;
+    place-items: center;
+    border-radius: 17px;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.results-empty h3 {
+    margin-bottom: 0.35rem;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+
+.results-empty p {
+    max-width: 450px;
+    margin: 0 auto;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.76rem;
+    line-height: 1.6;
+}
+
+/* ---------------------------------------------------------
+   ELECTION VERIFICATION
+   --------------------------------------------------------- */
+
+.election-verification-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.4rem;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: 22px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(239, 246, 255, 0.9),
+            rgba(255, 255, 255, 0.95)
+        );
+}
+
+.election-verification-title {
+    margin: 0 0 0.35rem;
+    color: var(--text-primary, #0f172a);
+    font-size: 1rem;
+    font-weight: 950;
+}
+
+.election-verification-text {
+    max-width: 680px;
+    margin: 0;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.76rem;
+    line-height: 1.65;
+}
+
+.verification-proof-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.7rem;
+    color: #047857;
+    font-size: 0.72rem;
+    font-weight: 900;
+}
+
+.verification-proof-status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+/* ---------------------------------------------------------
+   FINAL CERTIFICATION
+   --------------------------------------------------------- */
+
+.final-certification {
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 22px;
+    background: #ffffff;
+}
+
+.final-certification.certified {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(236, 253, 245, 0.9),
+            rgba(255, 255, 255, 1)
+        );
+}
+
+.final-certification.pending {
+    border-color: rgba(245, 158, 11, 0.2);
+    background: rgba(255, 251, 235, 0.72);
+}
+
+.certification-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+}
+
+.certification-icon {
+    flex: 0 0 auto;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 13px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+}
+
+.final-certification.pending .certification-icon {
+    background: rgba(245, 158, 11, 0.1);
+    color: #b45309;
+}
+
+.certification-content {
+    min-width: 0;
+}
+
+.certification-title {
+    margin: 0;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.95rem;
+    font-weight: 900;
+}
+
+.certification-message {
+    margin: 0.3rem 0 0;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+.certification-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+}
+
+.certification-meta-item {
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    background: rgba(248, 250, 252, 0.9);
+    color: var(--text-secondary, #64748b);
+    font-size: 0.67rem;
+    font-weight: 700;
+}
+
+.certification-meta-item strong {
+    color: var(--text-primary, #0f172a);
+}
+
+/* ---------------------------------------------------------
+   LIVE FEED
+   --------------------------------------------------------- */
+
+.live-feed {
+    display: grid;
+    gap: 0.65rem;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.live-feed-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.7rem;
+    border-radius: 13px;
+    background: #f8fafc;
+}
+
+.live-feed-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+}
+
+.live-feed-message {
+    color: var(--text-secondary, #64748b);
+    font-size: 0.7rem;
+    line-height: 1.45;
+}
+
+.live-feed-message strong {
+    color: var(--text-primary, #334155);
+}
+
+.live-feed-time {
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.62rem;
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   LOADING / SKELETON
+   --------------------------------------------------------- */
+
+.results-skeleton {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.results-skeleton-line {
+    height: 15px;
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            90deg,
+            #f1f5f9 25%,
+            #e2e8f0 37%,
+            #f1f5f9 63%
+        );
+    background-size: 400% 100%;
+    animation: resultsSkeleton 1.5s ease infinite;
+}
+
+.results-skeleton-line.short {
+    width: 45%;
+}
+
+.results-skeleton-line.medium {
+    width: 70%;
+}
+
+.results-skeleton-line.full {
+    width: 100%;
+}
+
+@keyframes resultsSkeleton {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 1050px) {
+    .results-overview {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .leaders-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .results-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .results-hero {
+        padding: 3.25rem 0 2.25rem;
+    }
+
+    .results-status-row {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .results-live-badge,
+    .results-update-time,
+    .results-connection {
+        justify-content: center;
+    }
+
+    .provisional-results-notice {
+        padding: 0.95rem;
+    }
+
+    .results-overview {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .results-stat-card {
+        padding: 1rem;
+        border-radius: 17px;
+    }
+
+    .leaders-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .race-card {
+        padding: 1rem;
+        border-radius: 18px;
+    }
+
+    .race-card-header {
+        flex-direction: column;
+        gap: 0.65rem;
+    }
+
+    .race-leader {
+        align-self: flex-start;
+    }
+
+    .result-candidate-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .result-candidate-percentage {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .result-candidate-votes {
+        grid-column: 2;
+        grid-row: 1;
+        margin-right: 3.5rem;
+    }
+
+    .result-candidate-profile {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .election-verification-card {
+        grid-template-columns: 1fr;
+    }
+
+    .election-verification-card .btn {
+        width: 100%;
+    }
+
+    .school-turnout-item {
+        grid-template-columns: minmax(100px, 0.8fr) 1fr auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .results-hero {
+        padding: 2.75rem 0 1.75rem;
+    }
+
+    .results-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .results-section {
+        margin-bottom: 2rem;
+    }
+
+    .results-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .results-stat-value {
+        font-size: 1.65rem;
+    }
+
+    .race-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .race-filter {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .result-candidate-header {
+        grid-template-columns: 1fr auto;
+        gap: 0.55rem;
+    }
+
+    .result-candidate-votes {
+        margin-right: 0;
+    }
+
+    .result-candidate-percentage {
+        display: none;
+    }
+
+    .result-candidate-profile {
+        min-width: 0;
+    }
+
+    .result-candidate-photo {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .school-turnout-item {
+        grid-template-columns: 1fr auto;
+    }
+
+    .school-turnout-bar {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .school-turnout-value {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .certification-header {
+        flex-direction: column;
+    }
+
+    .certification-meta {
+        flex-direction: column;
+    }
+
+    .certification-meta-item {
+        width: 100%;
+    }
+
+    .live-feed-item {
+        grid-template-columns: auto 1fr;
+    }
+
+    .live-feed-time {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------
+   ACCESSIBILITY / REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .results-live-badge::before,
+    .results-updating::after,
+    .results-skeleton-line {
+        animation: none;
+    }
+
+    .vote-bar-fill,
+    .school-turnout-fill {
+        transition: none;
+    }
+}

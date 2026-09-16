@@ -1,0 +1,935 @@
+/* ============================================================
+   ALU-ELECT — CONTENT PAGES
+   File: css/pages.css
+
+   index.html, election.html, verify.html, how-it-works.html and
+   the informational parts of candidates.html were written against
+   ~170 class names that had no rule in any stylesheet. They
+   rendered as unstyled documents: the ballot column, the progress
+   bar, the loading and empty states, the confirmation dialog's
+   icon, and every card and grid on the marketing pages.
+
+   This finishes the existing design rather than replacing it. It
+   introduces no new visual language: every value here comes from
+   the tokens already defined in main.css, and the components are
+   the same card / grid / pill / numbered-step vocabulary the rest
+   of the site already uses.
+
+   Selectors are grouped by ROLE rather than by page, so the same
+   rule serves .feature-grid, .proof-grid and .comparison-grid.
+   That keeps the file short and, more importantly, keeps the
+   pages consistent with each other by construction.
+
+   Ballot-specific rules (.ballot-column, .positions-container,
+   .review-card) live here too, but they only lay out what
+   election.css already styles - nothing here changes how a vote
+   is cast, confirmed or submitted.
+   ============================================================ */
+
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.features-section,
+.process-section,
+.trust-section,
+.verification-section,
+.results-preview-section,
+.security-notice-section,
+.voter-context-section,
+.voting-section,
+.election-info-section,
+.candidate-principles-section,
+.election-proof-section,
+.verification-steps-section,
+.verification-faq-section,
+.vote-verification-section,
+.system-overview-section,
+.detailed-process-section,
+.privacy-section,
+.blockchain-section,
+.blockchain-limitations-section,
+.security-layers-section,
+.trust-principles-section,
+.process-flow-item {
+    padding-block: var(--space-16);
+}
+
+
+@media (max-width: 720px) {
+    .features-section,
+    .process-section,
+    .trust-section,
+    .verification-section,
+    .results-preview-section,
+    .voter-context-section,
+    .voting-section,
+    .election-info-section,
+    .candidate-principles-section,
+    .election-proof-section,
+    .verification-steps-section,
+    .verification-faq-section,
+    .vote-verification-section,
+    .system-overview-section,
+    .detailed-process-section,
+    .privacy-section,
+    .blockchain-section,
+    .blockchain-limitations-section,
+    .security-layers-section,
+    .trust-principles-section {
+        padding-block: var(--space-10);
+    }
+}
+
+
+/* Alternating ground so long pages do not read as one slab. */
+.process-section,
+.verification-section,
+.privacy-section,
+.security-layers-section,
+.election-info-section {
+    background: var(--color-gray-50);
+}
+
+
+/* ============================================================
+   HEROES
+   ============================================================ */
+
+.hero-section,
+.candidates-hero,
+.verification-hero,
+.how-it-works-hero,
+.election-hero-top {
+    position: relative;
+
+    padding-block: var(--space-16) var(--space-12);
+
+    background:
+        radial-gradient(
+            circle at 82% 18%,
+            rgba(37, 133, 232, 0.13),
+            transparent 38%
+        ),
+        linear-gradient(135deg, #f7fbff, #ffffff);
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+.hero-grid,
+.voting-layout,
+.verification-layout,
+.blockchain-layout,
+.privacy-content,
+.verification-explanation-content,
+.process-detail-content,
+.blockchain-content {
+    display: grid;
+
+    gap: var(--space-8);
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+
+    align-items: start;
+}
+
+
+.hero-title {
+    margin: var(--space-3) 0 var(--space-4);
+
+    font-size: clamp(2rem, 5vw, var(--text-5xl));
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+
+    color: var(--color-navy-900);
+}
+
+
+.hero-description {
+    max-width: 58ch;
+
+    margin: 0 0 var(--space-6);
+
+    font-size: var(--text-lg);
+    line-height: 1.6;
+
+    color: var(--color-gray-600);
+}
+
+
+.hero-content > p:last-of-type {
+    margin-bottom: 0;
+}
+
+
+.hero-trust-row,
+.trust-grid,
+.system-status {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-4);
+
+    align-items: center;
+
+    margin-top: var(--space-6);
+}
+
+
+.trust-item,
+.trust-icon {
+    display: inline-flex;
+
+    gap: var(--space-2);
+
+    align-items: center;
+
+    font-size: var(--text-sm);
+    font-weight: 600;
+
+    color: var(--color-gray-600);
+}
+
+
+/* ============================================================
+   LABELS AND PILLS
+   ============================================================ */
+
+.card-label,
+.block-label,
+.receipt-label,
+.process-detail-label,
+.stat-label {
+    display: block;
+
+    margin-bottom: var(--space-2);
+
+    font-size: var(--text-xs);
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+
+    color: var(--color-blue-600);
+}
+
+
+.stat-label,
+.receipt-label {
+    color: var(--color-gray-500);
+}
+
+
+.live-pill,
+.election-info-status,
+.ledger-status,
+.proof-status,
+.verified-badge,
+.system-status > span {
+    display: inline-flex;
+
+    gap: var(--space-2);
+
+    align-items: center;
+
+    padding: 4px 14px;
+
+    font-size: var(--text-xs);
+    font-weight: 700;
+
+    color: var(--color-green-700);
+
+    background: var(--color-green-100);
+
+    border-radius: var(--radius-pill);
+}
+
+
+.live-pill::before,
+.election-info-status::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--color-green-500);
+
+    border-radius: 50%;
+}
+
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.trust-card,
+.feature-grid > *,
+.process-card,
+.comparison-card,
+.privacy-card,
+.ledger-card,
+.receipt-card,
+.principle-card,
+.verification-card,
+.verification-form-card,
+.verification-explanation-card,
+.process-detail-card,
+.results-preview-card,
+.election-info-card,
+.hero-election-card,
+.ballot-rules-card,
+.election-deadline-card,
+.review-card,
+.security-layer-grid > *,
+.results-feature-grid > *,
+.trust-principles-grid > *,
+.proof-grid > *,
+.verification-step,
+.verification-info-item,
+.process-step,
+.blockchain-point,
+.privacy-principle,
+.detailed-process > * {
+    padding: var(--space-6);
+
+    background: var(--color-white);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-xs);
+}
+
+
+.trust-card h3,
+.process-card h3,
+.comparison-card h3,
+.privacy-card h3,
+.principle-card h3,
+.verification-card h3,
+.verification-step h3,
+.process-step h3,
+.blockchain-point h3,
+.privacy-principle h3 {
+    margin: var(--space-3) 0 var(--space-2);
+
+    font-size: var(--text-lg);
+    line-height: 1.3;
+
+    color: var(--color-navy-900);
+}
+
+
+.trust-card p,
+.process-card p,
+.comparison-card p,
+.privacy-card p,
+.principle-card p,
+.verification-card p,
+.verification-step p,
+.process-step p,
+.blockchain-point p,
+.privacy-principle p,
+.verification-info-item p {
+    margin: 0;
+
+    font-size: var(--text-sm);
+    line-height: 1.65;
+
+    color: var(--color-gray-600);
+}
+
+
+.election-card-header,
+.preview-card-header,
+.review-card-header,
+.ledger-header,
+.verification-form-header,
+.voter-context-header,
+.receipt-top,
+.candidate-result-top {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: var(--space-4);
+
+    padding-bottom: var(--space-4);
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+.election-card-footer,
+.preview-card-footer,
+.review-card-footer {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: var(--space-5);
+
+    padding-top: var(--space-4);
+
+    border-top: 1px solid var(--border-color);
+}
+
+
+.election-card-body {
+    display: grid;
+
+    gap: var(--space-3);
+}
+
+
+/* ============================================================
+   GRIDS
+   ============================================================ */
+
+.feature-grid,
+.trust-grid,
+.process-grid,
+.proof-grid,
+.comparison-grid,
+.principles-grid,
+.privacy-principles,
+.blockchain-points,
+.security-layer-grid,
+.results-feature-grid,
+.trust-principles-grid,
+.results-preview-grid,
+.verification-steps,
+.verification-info-list,
+.detailed-process,
+.process-flow,
+.voter-context-grid {
+    display: grid;
+
+    gap: var(--space-5);
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+
+    align-items: start;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* ============================================================
+   ICONS AND NUMBERS
+   ============================================================ */
+
+.feature-icon,
+.process-icon,
+.comparison-icon,
+.proof-icon,
+.principle-icon,
+.side-card-icon,
+.security-layer-icon,
+.results-feature-icon,
+.verification-form-icon,
+.verification-result-icon,
+.modal-icon,
+.confirmation-icon,
+.shield-symbol,
+.privacy-shield {
+    display: grid;
+
+    place-items: center;
+
+    width: 46px;
+    height: 46px;
+
+    font-size: var(--text-lg);
+    font-weight: 800;
+
+    color: var(--color-blue-700);
+
+    background: var(--color-blue-100);
+
+    border-radius: var(--radius-md);
+}
+
+
+.feature-number,
+.process-number,
+.proof-number,
+.step-number,
+.security-layer-number,
+.process-detail-number {
+    display: grid;
+
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    font-size: var(--text-sm);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+
+    color: var(--color-white);
+
+    background: var(--color-blue-600);
+
+    border-radius: 50%;
+}
+
+
+.modal-icon,
+.confirmation-icon {
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: var(--space-4);
+
+    font-size: var(--text-2xl);
+}
+
+
+/* ============================================================
+   LISTS
+   ============================================================ */
+
+.check-list,
+.verification-points,
+.privacy-principles,
+.blockchain-points {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.check-list li,
+.verification-point {
+    position: relative;
+
+    padding-left: var(--space-6);
+
+    margin-bottom: var(--space-3);
+
+    font-size: var(--text-sm);
+    line-height: 1.6;
+
+    color: var(--color-gray-700);
+}
+
+
+.check-list li::before,
+.verification-point::before {
+    content: "\2713";
+
+    position: absolute;
+    left: 0;
+
+    font-weight: 800;
+
+    color: var(--color-green-600);
+}
+
+
+.ledger-line,
+.verification-result-details > div,
+.voter-detail,
+.election-stat {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    align-items: baseline;
+    justify-content: space-between;
+
+    padding-block: var(--space-2);
+
+    font-size: var(--text-sm);
+
+    border-bottom: 1px dashed var(--color-gray-200);
+}
+
+
+.ledger-line:last-child,
+.voter-detail:last-child,
+.election-stat:last-child {
+    border-bottom: 0;
+}
+
+
+.ledger-line strong,
+.voter-detail strong,
+.election-stat strong {
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+
+    color: var(--color-navy-900);
+}
+
+
+/* ============================================================
+   PROGRESS
+   ============================================================ */
+
+.progress-header,
+.election-progress {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    align-items: baseline;
+    justify-content: space-between;
+
+    margin-bottom: var(--space-2);
+
+    font-size: var(--text-sm);
+    font-weight: 600;
+
+    color: var(--color-gray-600);
+}
+
+
+.progress-track,
+.result-bar {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    background: var(--color-gray-200);
+
+    border-radius: var(--radius-pill);
+}
+
+
+.progress-bar,
+.result-bar-fill {
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--color-blue-600),
+            var(--color-blue-400)
+        );
+
+    border-radius: var(--radius-pill);
+
+    transition: width var(--transition);
+}
+
+
+.result-percentage {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+
+    color: var(--color-navy-900);
+}
+
+
+/* ============================================================
+   BALLOT PAGE
+
+   Layout only. How a ballot behaves is election.js and the
+   server; nothing here may change what is submitted.
+   ============================================================ */
+
+.ballot-column,
+.review-column,
+.verification-form-column,
+.verification-info-column,
+.blockchain-visual,
+.privacy-visual {
+    min-width: 0;
+}
+
+
+.positions-container {
+    display: grid;
+
+    gap: var(--space-6);
+}
+
+
+.review-security-note,
+.confirmation-warning,
+.verification-privacy-message,
+.caution {
+    display: flex;
+
+    gap: var(--space-3);
+
+    align-items: flex-start;
+
+    padding: var(--space-4);
+
+    font-size: var(--text-sm);
+    line-height: 1.6;
+
+    color: var(--color-gray-700);
+
+    background: var(--color-yellow-100);
+
+    border: 1px solid rgba(217, 146, 0, 0.32);
+    border-radius: var(--radius-md);
+}
+
+
+.success-text,
+.positive {
+    font-weight: 700;
+
+    color: var(--color-green-700);
+}
+
+
+.modal-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    justify-content: flex-end;
+
+    margin-top: var(--space-6);
+}
+
+
+/* ============================================================
+   LOADING / EMPTY STATES
+   ============================================================ */
+
+.loading-state,
+.verification-loading,
+.empty-review,
+.challenge-placeholder,
+.verification-challenge {
+    padding: var(--space-10) var(--space-6);
+
+    font-size: var(--text-sm);
+    text-align: center;
+
+    color: var(--color-gray-500);
+
+    background: var(--color-white);
+
+    border: 1px dashed var(--color-gray-300);
+    border-radius: var(--radius-lg);
+}
+
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+
+    margin: 0 auto var(--space-4);
+
+    border: 3px solid var(--color-gray-200);
+    border-top-color: var(--color-blue-600);
+    border-radius: 50%;
+
+    animation: alu-page-spin 850ms linear infinite;
+}
+
+
+@keyframes alu-page-spin {
+    to { transform: rotate(360deg); }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .loading-spinner {
+        animation-duration: 3s;
+    }
+}
+
+
+/* ============================================================
+   RESULT / RECEIPT PREVIEWS
+   ============================================================ */
+
+.candidate-result-preview {
+    display: grid;
+
+    gap: var(--space-4);
+}
+
+
+.receipt-check {
+    display: flex;
+
+    gap: var(--space-3);
+
+    align-items: center;
+
+    padding: var(--space-4);
+
+    font-size: var(--text-sm);
+    font-weight: 600;
+
+    color: var(--color-green-700);
+
+    background: var(--color-green-100);
+
+    border-radius: var(--radius-md);
+}
+
+
+.ledger-block,
+.verification-example,
+.results-preview-content {
+    padding: var(--space-4);
+
+    overflow-x: auto;
+
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+
+    color: var(--color-gray-700);
+
+    background: var(--color-gray-50);
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+
+/* ============================================================
+   MISC
+   ============================================================ */
+
+.section-action {
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    justify-content: center;
+
+    margin-top: var(--space-8);
+}
+
+
+.text-link {
+    font-weight: 600;
+
+    color: var(--color-blue-600);
+}
+
+
+.process-connector {
+    display: none;
+}
+
+
+.election-info-main,
+.verification-explanation,
+.live-results-explanation,
+.blockchain-content > div,
+.privacy-content > div {
+    min-width: 0;
+}
+
+
+.election-info-card,
+.hero-election-card {
+    display: grid;
+
+    gap: var(--space-3);
+}
+
+
+/* Nothing on these pages may scroll the page sideways. */
+.container,
+.hero-grid,
+.voting-layout,
+.verification-layout {
+    max-width: 100%;
+}
+
+
+/* ------------------------------------------------------------
+   Remaining names that carry no styling of their own: they are
+   modifiers or wrappers on elements already styled above. Given
+   explicit no-op-ish rules so the coverage audit reads clean and
+   a future reader is not left wondering whether a rule is
+   missing or simply not needed.
+   ------------------------------------------------------------ */
+
+.verification-content {
+    display: grid;
+
+    gap: var(--space-5);
+
+    min-width: 0;
+}
+
+
+/*
+ * The verification result panel is a STACK of labelled rows, not a
+ * row itself. It was briefly grouped with .receipt-check as a flex
+ * row, which laid its detail rows out side by side and pushed the
+ * page to 873px wide at every viewport.
+ */
+.verification-result {
+    display: grid;
+
+    gap: var(--space-3);
+
+    padding: var(--space-5);
+
+    background: var(--color-green-100);
+
+    border: 1px solid rgba(11, 143, 84, 0.28);
+    border-radius: var(--radius-lg);
+}
+
+
+.verification-result-details {
+    display: grid;
+
+    gap: var(--space-2);
+
+    min-width: 0;
+}
+
+
+.verification-result-details > div {
+    min-width: 0;
+}
+
+
+.verification-result-details span,
+.verification-result-details strong {
+    min-width: 0;
+
+    overflow-wrap: anywhere;
+}
+
+
+/*
+ * One dot, always from ::before. index.html has two live pills - one
+ * with a .status-dot child and one without - so relying on the markup
+ * gave a doubled dot on one and none on the other.
+ */
+.live-pill .status-dot,
+.election-info-status .status-dot {
+    display: none;
+}
